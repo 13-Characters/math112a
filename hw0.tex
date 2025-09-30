@@ -1,0 +1,130 @@
+\documentclass{ben}
+\title{MATH 112A Homework 0}
+\author{Benjamin Tong}
+\date{October 3, 2025}
+
+\begin{document}
+    \maketitle
+    \section{Problem 1}
+    Which is the following operators are linear? Provide reasons.
+    \begin{enumerate}[label=(\textbf{\arabic*)}]
+        \item $\mathscr{L}u = u_x + e^x u_y$
+        \item $\mathscr{L}u = u_x + |u_y|$
+        \item $\mathscr{L}u = u_x + u_y + 1$
+        \item $\mathscr{L}u = u_t + u_{xxx}$
+    \end{enumerate}
+    \begin{solution}
+        There are two requirements that need to be fufilled in order for $\mathscr{L}$ to be linear.
+        The first requirement is that $\mathscr{L}(u + v) = \mathscr{L}u + \mathscr{L}v$, and that
+        $\mathscr{L}(cu) = c\mathscr{L}u$.
+
+        According to this defintiion, this means that only (1) and (4) are linear.
+
+        To show that (1) is linear, we have to show that both
+        $\mathscr{L}(u + v) = \mathscr{L}u + \mathscr{L}v$ and that
+        $\mathscr{L}(cu) = c\mathscr{L}u$. We find that
+        \begin{align*}
+           \mathscr{L}(u + v) &= (u + v)_x + e^x(u + v)_y\\
+           &= u_x + v_x + e^x(u_y + v_y)\\
+           &= u_x + e^x u_y + v_x + e^x v_y\\
+           &= \mathscr{L} u + \mathscr{L} v
+        \end{align*}
+        and
+        \begin{align*}
+            \mathscr{L}(cu) &= (cu)_x + e^x (cu)_y\\
+            &= c(u_x) + ce^x (u_y)\\
+            &= c(u_x + e^x u_y)\\
+            &= c \mathscr{L} u
+        \end{align*}
+        
+        To show that (4) is linear, we have to show that both
+        $\mathscr{L}(u + v) = \mathscr{L}u + \mathscr{L}v$ and that
+        $\mathscr{L}(cu) = c\mathscr{L}u$. We find that
+        \begin{align*}
+            \mathscr{L}(u + v) &= (u + v)_t + (u + v)_{xxx}\\
+            &= u_t + v_t + u_{xxx} + v_{xxx}\\
+            &= (u_t + u_{xxx}) + (v_t + v_{xxx})\\
+            &= \mathscr{L}u + \mathscr{L}v
+        \end{align*}
+        and
+        \begin{align*}
+            \mathscr{L}(cu) &= (cu)_t + (cu)_{xxx}\\
+            &= c(u_t) + c(u_{xxx})\\
+            &= c(u_t + u_{xxx})\\
+            &= c\mathscr{L}u
+        \end{align*}
+        Now, (2) and (4) are not linear since they do not meet the two criteria mentioned earlier.
+    \end{solution}
+    \section{Problem 2}
+    For each of the following equations, state the order and whether it is
+    nonlinear, linear inhomogeneous, or linear homogeneous.
+    \begin{enumerate}[label=(\textbf{\arabic*)}]
+        \item $y u_x + x u_y = 0$.
+        \item $u_t - u_{xx} + 1 = 0$.
+        \item $u_t + u_{xxt} + u u_x = 0$.
+        \item $u_{tt} - u(u_x)^3 = 0$.
+        \item $u_{tt} - u_{xx} + x^2 = 0$.
+    \end{enumerate}
+    \begin{multipart}
+        \item [\textbf{(1)}] This is a linear homogeneous equation with order 1.
+        \item [\textbf{(2)}] This is a linear inhomogeneous equation with order 2.
+        \item [\textbf{(3)}] This is a nonlinear equation with order 3.
+        \item [\textbf{(4)}] This is a nonlinear equation with order 2.
+        \item [\textbf{(5)}] This is a linear inhomogeneous equation with order 2.
+    \end{multipart}
+    \section{Problem 3}
+    Show that the difference of two solutions of an inhomogeneous linear equation
+    $\mathscr{L}u = g$ with the same $g$ is a solution of the homogeneous equation
+    $\mathscr{L}u = 0$.
+    \begin{solution}
+        Let $\mathscr{L}$ be a linear operator and let $a$ and $b$ be functions that satisfy
+        $\mathscr{L}a = g$ and $\mathscr{L}b = g$. Then, $\mathscr{L}a - \mathscr{L}b = 0$.
+        Since $\mathscr{L}$ is a linear operator this means that $\mathscr{L}(a - b) = 0$.
+        Therefore, $a - b$ is a solution to the homogeneous equation $\mathscr{L}u = 0$.
+    \end{solution}
+    \section{Problem 4}
+    Verify that $u(x, y) = f(x)g(y)$ is a solution of the PDE
+    \[
+        uu_{xy} = u_x u_y
+    \]
+    for all pairs of (differentiable) functions $f$ and $g$ of one variable.
+    \begin{solution}
+        If $u(x, y) = f(x)g(y)$ for some functions $f$ and $g$, then
+        \begin{align*}
+            u_x &= f'(x)g(y)\\
+            u_y &= f(x)g'(y)\\
+            u_{xy} &= f'(x)g'(y)
+        \end{align*}
+        Substituting these into the PDE, we find that
+        \begin{align*}
+            (f(x)g(y))(f'(x)g'(y)) &= (f'(x)g(y))(f(x)g'(y))\\
+            f(x)f'(x)g(y)g'(y) &= f(x)f'(x)g(y)g'(y)
+        \end{align*}
+        Therefore $u(x, y) = f(x)g(y)$ is a valid solution of the PDE, regardless
+        of what $f(x)$ or $g(y)$ is.
+    \end{solution}
+    \section{Problem 5}
+    Verify by direct substitution that
+    \[
+        u_n(x, y) = \sin nx + \sinh ny
+    \]
+    is a solution of the PDE:
+    \[
+        u_{xx} + u_{yy} = 0
+    \]
+    for every $n > 0$.
+    \begin{solution}
+        We find that
+        \begin{align*}
+            u_{xx} &= -\sin nx \sinh ny\\
+            u_{yy} &= \sin nx \sinh ny\\
+        \end{align*}
+        and so
+        \begin{align*}
+            u_{xx} + u_{yy} &= (-\sin nx \sinh ny) + (\sin nx \sinh ny)\\
+            &= 0
+        \end{align*}
+        So, $u_n(x, y) = \sin nx \sinh ny$ is a solution of the PDE $u_{xx} + u_{yy} = 0$
+        for every $n > 0$.
+    \end{solution}
+\end{document}

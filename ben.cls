@@ -27,7 +27,7 @@
 
 % Custom stuff I use
 \renewcommand{\qedsymbol}{$\blacksquare$}
-\renewcommand{\subsection}{\@startsection{subsection}{2}{15pt}{15pt plus 2pt minus 2pt}{5pt plus 2pt minus 2pt}{\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0pt}{15pt plus 2pt minus 2pt}{5pt plus 2pt minus 2pt}{\bfseries \large}}
 \renewcommand{\maketitle}{
 \begin{center}
     \LARGE \textbf{\@title} - \@date\\

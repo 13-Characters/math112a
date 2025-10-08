@@ -1,0 +1,152 @@
+\documentclass{ben}
+\title{MATH 112A Homework 0}
+\author{Benjamin Tong}
+\date{October 3, 2025}
+
+\begin{document}
+\maketitle
+\section{Monday}
+\subsection{Problem 1}
+\noindent
+Solve the following PDE for $u(x, t)$:
+\[
+4u_t + 7u_x = 0,\ u(x, 0) = e^x.
+\]
+Use the method based on directional derivative. Show all the details.
+\begin{solution}
+    First, we rewrite the PDE as $7u_x + 4u_t = 0$.
+    Then, we note that $7u_x + 4u_t = Du \cdot \langle 7, 4 \rangle$. So, the solution to
+    $u(x, t)$ must be something of the form
+    \[
+        u(x, t) = f(4x - 7t)
+    \]
+    Since our constraint is that $u(x, 0) = e^x$, we find that
+    \begin{align*}
+        u(x, 0) &= f(4x - 0t)\\
+        e^x &= f(4x)\\
+        f(4x) &= e^x\\
+        f\left( 4 \left( \frac{x}{4} \right) \right) &= e^{\frac{x}{4}}\\
+        f(x) &= e^{\frac{x}{4}}
+    \end{align*}
+    Therefore, $u(x, t) = e^{\frac{(4x - 7t)}{4}}$ is the solution.
+\end{solution}
+\subsection{Problem 2}
+\noindent
+Solve the following PDE for $u(x, t)$:
+\[
+-2u_t + 11u_x = 0, u(x, 0) = \sin 2x
+\]
+Use the method based on the change of coordinates. Show all the details.
+\begin{solution}
+    First, we rewrite the PDE as $11u_x - 2u_t = 0$. Then, we define the variables
+    $x'$ and $t'$ as
+    \begin{align*}
+        x' &= -2x + 11t\\
+        t' &= 11x + 2t
+    \end{align*} 
+    Now, we can rewrite both $u_x$ and $u_t$ in terms of $x'$ and $t'$ instead using the chain rule.
+    We find that
+    \begin{align*} 
+        u_x &= \frac{\partial u}{\partial x}\\
+        &= \frac{\partial u}{\partial x'} \frac{\partial x'}{\partial x}
+        + \frac{\partial u}{\partial t'}\frac{\partial t'}{\partial x}\\
+        &= -2 u_{x'} + 11 u_{t'}
+    \end{align*}
+    and
+    \begin{align*} 
+        u_t &= \frac{\partial u}{\partial t}\\
+        &= \frac{\partial u}{\partial x'} \frac{\partial t'}{\partial t}
+        + \frac{\partial u}{\partial t'}\frac{\partial x'}{\partial t}\\
+        &= 11 u_{x'} + 2 u_{t'}
+    \end{align*}
+    Now, we substitute this into the original equation to get
+    \begin{align*}
+        -2 u_t + 11 u_x &= 0\\
+        -2 \left( -2 u_{x'} + 11 u_{t'} \right) + 11 \left( 11 u_{x'} + 2 u_{t'} \right) &= 0\\
+        4 u_{x'} - 22 u_{t'} + 121 u_{x'} + 22 u_{t'} &= 0\\
+        125 u_{x'} &= 0\\
+        u_{x'} &= 0
+    \end{align*}
+    Integrating this gives us with respect to $x'$ gives us $u = f(t') = f(11x + 2t)$.
+    Now, since our constraint is $u(x, 0) = \sin 2x$ this means that
+    \begin{align*}
+       u(x, 0) &= f(11x + 2(0))\\
+       \sin 2x &= f(11x)\\
+       f(11x) &= \sin(2x)\\
+       f \left( 11 \left( \frac{x}{11} \right) \right) &=
+       \sin \left( 2 \left( \frac{x}{11} \right) \right)\\
+       f(x) = \sin\left(\frac{2}{11}x\right)
+    \end{align*}
+    So, $u(x, t) = \sin\left(\frac{2}{11}\left(11x + 2t\right)\right)$ is the solution to the PDE.
+\end{solution}
+\section{Wednesday}
+\subsection{Problem 1}
+\noindent
+Solve the solution $u(x, t)$ to the equation
+\[
+u_t + u_x = 1,\ u(x, 0) = 2x^2 - 3x + 5
+\]
+\begin{solution}
+    We define the variables $x'$ and $t'$ as
+    \begin{align*}
+        x' &= x + t\\
+        t' &= -x + t
+    \end{align*}
+    We find that
+    \begin{align*}
+        u_t &= \frac{\partial u}{\partial x'} \frac{\partial x'}{\partial t}
+        + \frac{\partial u}{\partial t'} \frac{\partial t'}{\partial t}\\
+        &= u_{x'} + u_{t'}
+    \end{align*}
+    and
+    \begin{align*}
+        u_x &= \frac{\partial u}{\partial x'} \frac{\partial x'}{\partial x}
+        + \frac{\partial u}{\partial t'} \frac{\partial t'}{\partial x}\\
+        &= u_{x'} - u_{t'}
+    \end{align*}
+    Integrating this with respect to $x'$ gives us $u = \frac{1}{2}x' + f(t')$
+    In terms of $x$ and $t$, $u(x, t) = \frac{1}{2} \left( x + t \right) + f\left( -x + t \right)$.
+    Now, since our constraint is $u(x, 0) = 2x^2 - 3x + 5$, it means that
+    \begin{align*}
+        u(x, 0) &= 2x^2 - 3x + 5\\
+        \frac{1}{2}(x + 0) + f(-x + 0) &= 2x^2 - 3x + 5\\
+        \frac{1}{2} x + f(-x) &= 2x^2 - 3x + 5\\
+        f(-x) &= 2x^2 - \frac{7}{2}x + 5\\
+        f(-(-x)) &= 2(-x)^2 - \frac{7}{2}(-x) + 5\\
+        f(x) &= 2x^2 + \frac{7}{2}x + 5
+    \end{align*}
+    Therefore, the solution to the PDE is
+    \[
+        u(x, t) = \frac{1}{2}(x + t) + \left( 2 (-x + t)^2 + \frac{7}{2} (-x + t) + 5 \right)
+    \]
+\end{solution}
+\subsection{Problem 2}
+\noindent
+Solve the equation
+\[
+(1 + t^2)u_t + u_x = 0,\ u(x, 0) = \frac{1}{1 + x^2}
+\]
+\subsection{Problem 3}
+\noindent
+Solve the PDE $u_x + u_y + u = e^{x + 2y}$ with $u(x, 0) = 0$.
+\section{Friday}
+\subsection{Problem 1}
+\noindent
+For any non-integer real number $\alpha$, derive the binomial formula:
+\[
+(1 + x)^\alpha = 1 + \alpha x + \frac{\alpha(\alpha - 1)}{2!} x^2
++ \frac{\alpha (\alpha - 1)(\alpha - 2)}{3!}x^3 + \cdots
+\]
+where the coefficient for $x^n$ is
+\[
+\frac{\alpha (\alpha - 1) (\alpha - 2) \cdots (\alpha - n + 1)}{n!}
+\]
+\subsection{Problem 2}
+\noindent
+A flexible chain of length $\ell$ is hanging from one end $x = 0$ but oscillates
+horizontally. Let the $x$ axis point downward and the $u$ axis point to the right.
+Assume that the force of gravity at each point of the chain equals the weight
+of the part of the chain below the point and is directed tangentially along the
+chain. Assume that the oscillations are small. Find the PDE satisfied by the
+chain.
+\end{document}

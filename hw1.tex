@@ -1,7 +1,7 @@
 \documentclass{ben}
-\title{MATH 112A Homework 0}
+\title{MATH 112A Homework 1}
 \author{Benjamin Tong}
-\date{October 3, 2025}
+\date{October 10, 2025}
 
 \begin{document}
 \maketitle
@@ -126,9 +126,81 @@ Solve the equation
 \[
 (1 + t^2)u_t + u_x = 0,\ u(x, 0) = \frac{1}{1 + x^2}
 \]
+\begin{solution}
+    First of all, we find the equation of the characteristic curves. The characteristic curves must
+    follow the equation
+    \[
+        \frac{dt}{dx} = \frac{1 + t^2}{1}
+    \]
+    This ODE has the solution
+    \[
+        x = \arctan(t) + C
+    \]
+    This means that $u(\arctan(t) + C, t)$ will always have the same value regardless of what $t$
+    is, and this value is only dependent on $C$. Since $C = x - \arctan(t)$, we say that
+    \[u(x, t) = f(x - \arctan(t))\]
+    An additional constraint states that $u(x, 0) = \frac{1}{1 + x^2}$, so
+    \begin{align*}
+        f(x - \arctan(0)) &= \frac{1}{1 + x^2}\\
+        f(x) &= \frac{1}{1 + x^2}
+    \end{align*}
+    Therefore,
+    \[
+    u(x, t) = \frac{1}{1 + \left(x - \arctan(t)\right)^2}
+    \]
+    is the solution to the PDE.
+\end{solution}
+\newpage
 \subsection{Problem 3}
 \noindent
 Solve the PDE $u_x + u_y + u = e^{x + 2y}$ with $u(x, 0) = 0$.
+First, we define the variables $x'$ and $y'$ as
+\begin{align*}
+    x' &= x + y\\
+    y' &= y - x
+\end{align*}
+We find that we can rewrite $u_x$ and $u_y$ in terms of $x'$ and $y'$ like so:
+\begin{align*}
+    u_x &= \frac{\partial u}{\partial x'} \frac{\partial x'}{\partial x} + \frac{\partial u}{\partial y'} \frac{\partial y'}{\partial x}\\
+    &= 1 u_{x'} - 1 u_{y'}
+\end{align*}
+and
+\begin{align*}
+    u_y &= \frac{\partial u}{\partial x'} \frac{\partial x'}{\partial y} + \frac{\partial u}{\partial y'} \frac{\partial y'}{\partial y}\\
+    &= 1 u_{x'} + 1 u_{y'}
+\end{align*}
+Now, substituting $u_x$ and $u_y$ with these values we get
+\begin{align*}
+    \left( u_{x'} - u_{y'} \right) + \left( u_{x'} + u_{y'} \right) + u &= e^{x + 2y}\\
+    2 u_{x'} + u &= e^{x + 2y}
+\end{align*}
+Note that $x + 2y = \frac{3}{2}x' - \frac{1}{2}y'$, so we get the equation
+\begin{align*}
+    2 u_{x'} + u &= e^{\left(\frac{3}{2}x' - \frac{1}{2}y'\right)}\\
+    &= e^{-\frac{1}{2}y'}e^{\frac{3}{2}x'}
+\end{align*}
+Now, we can solve this like a normal ODE. We find that
+\begin{align*}
+    2u_{x'} + u &= e^{-\frac{1}{2}y'}e^{\frac{3}{2}x'}\\
+    u_{x'} + \frac{1}{2}u &= \frac{1}{2} e^{-\frac{1}{2}y'}e^{\frac{3}{2}x'}\\
+    e^{\frac{1}{2}x'}\left(u_{x'} + \frac{1}{2}u\right)
+    &= \frac{1}{2}e^{-\frac{1}{2}y'}e^{\frac{3}{2}x'}\\
+    e^{\frac{1}{2}x'} u_{x'} + \frac{1}{2} e^{\frac{1}{2}x'} u
+    &= \frac{1}{2}e^{-\frac{1}{2}y'}e^{\frac{3}{2}x'}\\
+    \left( e^{\frac{1}{2}x'} u \right)'
+    &= \frac{1}{2}e^{-\frac{1}{2}y'}e^{\frac{3}{2}x'}\\
+    e^{\frac{1}{2}x'} u
+    &= \int \frac{1}{2}e^{-\frac{1}{2}y'}e^{\frac{3}{2}x'}\ dx'\\
+    e^{\frac{1}{2}x'} u
+    &= \frac{1}{3}e^{-\frac{1}{2}y'} e^{\frac{3}{2}x'} + g(y')\\
+    u &= \frac{1}{3} e^{x' - \frac{1}{2}y'} + \frac{g(y')}{e^{\frac{1}{2}x'}}
+\end{align*}
+Substituting in back the values of $x'$ and $y'$ in terms of $x$ and $y$ we get
+\begin{align*}
+    u &= \frac{1}{3} e^{x' - \frac{1}{2}y'} + \frac{g(y')}{e^{\frac{1}{2}x'}}\\
+    &= \frac{1}{3} e^{(x + y) - \frac{1}{2}(y - x)} + \frac{g(y - x)}{e^{\frac{1}{2}x + \frac{1}{2}y}}\\
+    &= \frac{1}{3} e^{\frac{3}{2}x + \frac{1}{2}y} + \frac{g(y - x)}{e^{\frac{1}{2}x + \frac{1}{2}y}}
+\end{align*}
 \section{Friday}
 \subsection{Problem 1}
 \noindent

@@ -1,0 +1,100 @@
+\documentclass{ben}
+\title{MATH 112A Homework 2}
+\author{Benjamin Tong}
+\date{October 17, 2025}
+
+\begin{document}
+\maketitle
+\section{Monday}
+\subsection{Problem 1}
+On the sides of a thin rod, heat exchange takes place (obeying Newton's
+law of cooling—flux proportional to temperature difference) with a medium of
+constant temperature $T_0$. What is the equation satisfied by the temperature $u(x, t)$, neglecting
+its variation across the rod?
+\begin{solution}
+    When we consider the one dimensional case of the heat equation
+    $c \rho \frac{\partial x}{\partial t} = \nabla \cdot (\kappa \Delta u)$, the equation becomes
+    \[
+    c \rho u_t = \kappa u_{xx}
+    \]
+\end{solution}
+\subsection{Problem 2}
+Consider heat flow in a long circular cylinder where the temperature depends only on $t$
+and on the distance $r$ to the axis of the cylinder. Here $r = \sqrt{x^2 + y^2}$ is the cylindrical
+coordinate. From the three-dimensional heat equation derive the equation
+\[
+    u_t = \kappa \left( u_{rr} + \frac{u_r}{r} \right)
+\]
+\begin{solution}
+    We know that the three-dimensional heat equation is the equation
+    \[
+        u_t = k(u_{xx} + u_{yy} + u_{zz})
+    \]
+    Converting this into cylindrical coordinates, we get
+    \[
+        u_t =
+        \frac{1}{r} \frac{\partial }{\partial r} \left( r \frac{\partial u}{\partial r} \right)
+        + \frac{1}{r^2} \frac{\partial^2 u}{\partial \theta^2} + \frac{\partial^2 u}{\partial z^2}
+    \]
+    We know that since $u$ only depends on $r$ and $t$,
+    $\frac{\partial^2 u}{\partial \theta}$ and $\frac{\partial^2 u}{\partial z^2}$
+    are both equal to $0$. So, this equation is simplified to
+    \[
+        u_t = k \left[ \frac{1}{r} \frac{\partial }{\partial r} \left( r \frac{\partial u}{\partial r} \right) \right]
+    \]
+    Simplifying further this we get
+    \begin{align*}
+        u_t &= k \left[ \frac{1}{r} \frac{\partial }{\partial r} \left( r \frac{\partial u}{\partial r} \right) \right]\\
+        &= \frac{k}{r} \left( \frac{\partial u}{\partial r} + r \frac{\partial^2 u}{\partial r^2} \right)\\ 
+        &= k \left( \frac{1}{r} \frac{\partial u}{\partial r} + \frac{\partial^2 u}{\partial r^2} \right)\\
+        &= k \left( u_{rr} + \frac{1}{r} u_{r} \right)
+    \end{align*}
+\end{solution}
+\subsection{Problem 3}
+If $\vec{f} (\vec{x})$ is continuous and $|\vec{f} (\vec{x})| \leq \frac{1}{|\vec{x}|^3 + 1}$ for
+all $\vec{x}$, show that
+\[
+    \iiint_{\R^3} \operatorname{div}\left(\vec{f} (\vec{x}) \right) d \vec{x} = 0
+\]
+\section{Wednesday}
+\subsection{Problem 1}
+By trial and error, find a solution of the diffusion equation $u_t = u_{xx}$ with the initial
+conditional $u(x, 0) = x^2$.
+\subsection{Problem 2}
+A homogeneous body occupying the solid region $D$ is completely insulated.
+Its initial temperature is $f(\vec{X})$. Find the steady-state temperature that it reaches after
+a long time. (Hint: No heat is gained or lost.)
+\begin{solution}
+    The steady state temperature would be
+    \[
+    \frac{\iiint_{D} f(\vec{X}) dV}{\iiiint_D dV} 
+    \]
+    since we expect that after an infinite amount of time that the temperature would average out
+\end{solution}
+\subsection{Problem 3}
+A rod occupying the interval $0 \leq x \leq \ell$ is subject to the heat source $f(x) = 0$ for
+$0 < x < \frac{\ell}{2}$, and $f(x) = H$ for $\frac{\ell}{2} < x < \ell$ where $H > 0$. The rod has
+physical constants $c = \rho = \kappa = 1$, and its ends are kept at zero temperature.
+Find the steady-state temperature $T(x)$ of the rod.
+Here $T(x)$ is a continuously differentiable function.
+\section{Friday}
+\subsection{Problem 1}
+Solve the boundary problem $u'' = 0$ for $0 < x < 1$ with $u'(0) + ku(0) = 0$ and
+$u'(1) \pm ku(1) = 0$. Do the $+$ and $-$ cases separately. What is special about the case $k = 2$?
+\subsection{Problem 2}
+Consider the Neumann problem
+\begin{align*}
+    \Delta u = f(x, y, z),&\qquad \text{in $D$.}\\
+    \frac{\partial u}{\partial n} = 0,&\qquad \text{on $\partial D$.}
+\end{align*}
+\begin{enumerate}[label=(\arabic*)]
+    \item What can we surely add to any solution to get another solution?
+    So we don't have uniqueness.
+    \item Use the divergence theorem and the PDE to show that
+    \[
+        \iiint_D f(x, y, z)\ dx\ dy\ dz = 0
+    \]
+    \item Can you give a physical interpretation part (1) and/or (2)
+    for either heat flow or diffusion?
+\end{enumerate}
+\end{document}

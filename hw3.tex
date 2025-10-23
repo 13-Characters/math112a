@@ -6,7 +6,7 @@
 \begin{document}
 \maketitle
 \section{Monday}
-\section{Problem 1}
+\subsection{Problem 1}
 What is the type of each of the following equations?
 \begin{enumerate}
     \item $u_{xx} - u_{xy} + 2 u_y + u_{yy} - 3 u_{yx} + 4u = 0$
@@ -17,12 +17,90 @@ What is the type of each of the following equations?
     Since $(-2)^2 < (1)(1)$, this equation is elliptic.
     \item Since $3^2 = (9)(1)$, this equation is parabolic.
 \end{multipart}
-\section{Problem 2}
-\section{Problem 3}
+\subsection{Problem 2}
+Find the regions in the $xy$ plane where the equation
+\[
+  (1 + x) u_{xx} + 2xy u_{xy} - y^{2} u_{yy} = 0
+\]
+is elliptic, hyperbolic or parabolic. Sketch them.
+\begin{solution}
+  This equation is parabolic only on the line $y = 0$. Everywhere else, the
+  equation is hyperbolic.
+  \begin{center}
+    \includegraphics[width=5.03in]{hw3graph.png}
+  \end{center}
+\end{solution}
+\newpage
+\subsection{Problem 3}
+What is the type of the equation
+\[
+  u_{xx} - 4 u_{xy} + 4 u_{yy} = 0
+\]
+Show by direct substitution that $u(x, y) = f(y + 2x) + xg(y + 2x)$ is a solution for arbitrary
+functions $f$ and $g$.
+\begin{solution}
+  This equation is parabolic, as $(-2)^2 = (1)(4)$. Now, we will find the derivatives
+  $u_{xx}$, $u_{xy}$, and $u_{yy}$ for the equation $u(x, y) = f(y + 2x) + xg(y + 2x)$.\\
+  We find that
+  \begin{align*}
+    u_{x} &= 2 f'(y + 2x) + \left( g(y + 2x) + 2x g'(y + 2x) \right)\\
+    u_{y} &= f'(y + 2x) + xg'(y + 2x)
+  \end{align*}
+  Differentiating this again we get
+  \begin{align*}
+    u_{xx} &= 4 f''(y + 2x) + 4 g'(y + 2x) + 4x g''(y + 2x)\\
+    u_{xy} &= 2 f''(y + 2x) + g'(y + 2x) + 2x g''(y + 2x)\\
+    u_{yy} &= f''(y + 2x) + x g''(y + 2x)
+  \end{align*}
+  Substituting in these equations we get that
+  \begin{align*}
+    u_{xx} - 4u_{xy} + 4u_{yy} &= \left( 4 f''(y + 2x) + 4 g'(y + 2x)
+                               + 4x g''(y + 2x) \right)\\
+                               & - 4 \left( 2 f''(y + 2x) + g'(y + 2x)
+                               + 2x g''(y + 2x) \right)\\
+                               & + 4 \left( f''(y + 2x) + x g''(y + 2x) \right)\\
+                               &= \left( 4 f''(y + 2x) + 4 g'(y + 2x)
+                               + 4x g''(y + 2x) \right)\\
+                               & + \left( -8 f''(y + 2x) - 4 g'(y + 2x)
+                               - 8x g''(y + 2x) \right)\\
+                               & + \left( 4 f''(y + 2x) + 4x g''(y + 2x) \right)\\
+                               &= (4 + (-8) + 4) f''(y + 2x) + (4 + (-4)) g'(y + 2x)
+                               + (4 + (-8) + 4) x g''(y + 2x)\\
+                               &= 0 f''(y + 2x) + 0 g'(y + 2x) + 0 x g''(y + 2x)\\
+                               &= 0 + 0 + 0\\
+                               &= 0
+  \end{align*}
+  
+\end{solution}
 \section{Wednesday and Friday}
-\section{Problem 1}
-\section{Problem 2}
-\section{Problem 3}
-\section{Problem 4}
-\section{Problem 5}
+\subsection{Problem 1}
+Solve
+\[
+  u_{tt} = c^2 u_{xx},\ u(x, 0) = e^{x},\ u_t(x, 0) = \sin x
+\]
+\subsection{Problem 2}
+Solve
+\[
+  u_{tt} = c^2 u_{xx},\ u(x, 0) = \ln(1 + x^2),\ u_t(x, 0) = 4 + x
+\]
+\subsection{Problem 3}
+(The hammer blow) Consider the 1D wave equation:
+\[
+  \begin{cases}
+    u_{tt} = c^2 u_{xx}, & -\inf < x < \inf,\ t > 0;\\
+    u(x, 0) = \phi(x), u_{t}(x, 0) = \psi (x), & -inf < x < \inf.
+  \end{cases}
+\]
+\subsection{Problem 4}
+In P3, find the greatest displacement, $\max_{x} u(x, t)$, as a function of $t$.
+\subsection{Problem 5}
+Consider the 1D wave equation:
+\[
+  \begin{cases}
+    u_{tt} = c^2 u_{xx}, & -\inf < x < \inf,\ t > 0;\\
+    u(x, 0) = \phi(x), u_{t}(x, 0) = \psi(x), & -\inf < x \inf.
+  \end{cases}
+\]
+If both $\phi$ and $\psi$ are odd functions of $x$, show that the solution $u(x, t)$ of the wave
+equation is also odd in $x$ for all $t$.
 \end{document}

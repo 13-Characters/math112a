@@ -78,29 +78,112 @@ Solve
 \[
   u_{tt} = c^2 u_{xx},\ u(x, 0) = e^{x},\ u_t(x, 0) = \sin x
 \]
+\begin{solution}
+    To solve this, we use D' Alembert's formula, which is
+    \[
+        u(x, t) = \frac{1}{2} \left(\phi(x + ct) + \phi(x - ct)\right) + \frac{1}{2c} \int_{x - ct}^{x + ct} \psi(s)\ ds
+    \]
+    where $\phi(x) = u(x, 0) = e^x$ and $\psi(x) = u_t(x, 0) = \sin x$
+    Substituting these equations we get
+    \begin{align*}
+        u(x, t) &= \frac{1}{2} \left( e^{x + ct} - e^{x - ct} \right) + \frac{1}{2c} \int_{x - ct}^{x + ct} \sin(s) ds\\
+        &= \frac{1}{2} \left( e^{x + ct} - e^{x - ct} \right) + \frac{1}{2c} \left( -\cos(x + ct) - (- \cos(x + ct)) \right)\\
+        &= \frac{1}{2} \left( e^{x + ct} - e^{x - ct} \right) + \frac{1}{2c} \left( \cos(x - ct) - \cos(x + ct) \right)
+    \end{align*}
+\end{solution}
 \subsection{Problem 2}
 Solve
 \[
   u_{tt} = c^2 u_{xx},\ u(x, 0) = \ln(1 + x^2),\ u_t(x, 0) = 4 + x
 \]
+\begin{solution}
+    To solve this, we use D' Alembert's formula, which is
+    \[
+        u(x, t) = \frac{1}{2}(\phi(x + ct) + \phi(x - ct)) + \frac{1}{2c} \int_{x - ct}^{x + ct} \psi(s) ds
+    \]
+    where $\phi(x) = u(x, 0) = \ln(1 + x^2)$ and $\psi(x) = u_t(x, 0) = 4 + x$. Substituting
+    these equations we get
+    \begin{align*}
+        u(x, t) &= \frac{1}{2}\left( \ln(1 + (x + ct)^2) + \ln(1 + (x - ct)^2) \right) + \frac{1}{2c} \int_{x - ct}^{x + ct} 4 + s\ ds\\
+        &= \frac{1}{2} \left( \ln \left((1 + (x + ct)^2)(1 + (x - ct)^2)\right)\right) + \frac{1}{2c} \left( (4 (x + ct) + \frac{1}{2}(x + ct)^2) - (4 (x - ct) + \frac{1}{2}(x - ct)^2)\right)\\
+        &= \frac{1}{2} \left( \ln \left(1 + (x - ct)^2 + (x + ct)^2 + (x - ct)^2(x + ct)^2 \right) \right) + \frac{1}{2c} \left( 8ct + xct \right)
+    \end{align*}
+\end{solution}
 \subsection{Problem 3}
 (The hammer blow) Consider the 1D wave equation:
 \[
   \begin{cases}
-    u_{tt} = c^2 u_{xx}, & -\inf < x < \inf,\ t > 0;\\
-    u(x, 0) = \phi(x), u_{t}(x, 0) = \psi (x), & -inf < x < \inf.
+    u_{tt} = c^2 u_{xx}, & -\infty < x < \infty,\ t > 0;\\
+    u(x, 0) = \phi(x), u_{t}(x, 0) = \psi (x), & -\infty < x < \infty.
   \end{cases}
 \]
+Let $\phi(x) = 0$ and $\psi(x) = 1$ for $|x| < a$ and $\psi(x) = 0$ for $|x| \geq a$. Sketch
+the string profile ($u$ versus $x$) at each of the successive instants $t = \frac{a}{2c}$,
+$\frac{a}{c}$, $\frac{3a}{2c}$, $\frac{2a}{c}$, $\frac{5a}{c}$ 
+
+\begin{solution}
+    First, we use D'Alembert's formula to solve the equation. The formula states that
+    \[
+    u(x, t) = \frac{1}{2} \left(\phi(x + ct) - \phi(x - ct) \right)
+    + \frac{1}{2c} \int_{x - ct}^{x + ct} \psi(s)\ ds
+    \]
+    We know by definition that $\phi(x) = 0$, so,
+    \begin{align*}
+        u(x, t) &= \frac{1}{2c} \int_{x - ct}^{x + ct} \psi(s) ds\\
+        &= \frac{1}{2c} \operatorname{len} \{(x - ct, x + ct) \cap (-a, a)\}
+    \end{align*}
+    For the $t = \frac{a}{2c}$ case, we find that the maximum value of $u$ must be equal to $a$,
+    and this happens when $-\frac{a}{2} < x < \frac{a}{2}$. We also find that $u$ is not equal
+    to zero on the interval $-\frac{3a}{2} < x < \frac{3a}{2}$\\
+    For the other cases, since the interval $(-a, a)$ is smaller than the interval
+    $(x - ct, x + ct)$, the maximum value of $u$ must be $2a$ since that is the length of $(-a, a)$,
+    and this happens when $-a + ct < x < a - ct$. We also find that $u$ is not equal to
+    zero on the interval $-a - ct < x < a + ct$.
+
+    With this information, we find that the string profiles are:
+    \newpage
+    \begin{center}
+        \includegraphics[height=7in]{hw3graph2.png}
+    \end{center}
+\end{solution}
+\newpage
 \subsection{Problem 4}
 In P3, find the greatest displacement, $\max_{x} u(x, t)$, as a function of $t$.
+\begin{solution}
+  When $t$ is fixed, the maximum value of $u(x, t)$ is the length of the intersection of the
+  open sets $(x - ct, x + ct)$ and $(-a, a)$. This happens when one of the sets is contained inside
+  the other, and when this happens the length of the intersection is just the length of the set that
+  is smaller. So,
+  \[\max_x u(x, t) = \min(2a, 2ct)\]
+\end{solution}
 \subsection{Problem 5}
 Consider the 1D wave equation:
 \[
   \begin{cases}
-    u_{tt} = c^2 u_{xx}, & -\inf < x < \inf,\ t > 0;\\
-    u(x, 0) = \phi(x), u_{t}(x, 0) = \psi(x), & -\inf < x \inf.
+    u_{tt} = c^2 u_{xx}, & -\infty < x < \infty,\ t > 0;\\
+    u(x, 0) = \phi(x), u_{t}(x, 0) = \psi(x), & -\infty < x < \infty.
   \end{cases}
 \]
 If both $\phi$ and $\psi$ are odd functions of $x$, show that the solution $u(x, t)$ of the wave
 equation is also odd in $x$ for all $t$.
+\begin{solution}
+  First, we find the solution is equal to D' Alembert's equation, which is
+  \[
+    u(x, t) = \frac{1}{2} \left( \phi(x + ct) + \phi(x - ct) \right)
+    + \frac{1}{2c} \int_{x - ct}^{x + ct} \psi(s)\ ds
+  \]
+  Now, we want to show that $u$ is odd in $x$ for all $t$, that is, $u(-x, t) = u(x, t)$
+  for all $t$. We are given only the information that $\phi(-x) = -\phi(x)$ and
+  $\psi(-x) = -\psi(x)$. We find that
+  \begin{align*}
+    u(-x, t) &= \frac{1}{2} \left( \phi((-x) + ct) + \phi((-x) - ct) \right)
+    + \frac{1}{2c} \int_{(-x) - ct}^{(-x) + ct} \psi(s)\ ds\\
+    &= \frac{1}{2} \left( -(\phi(x - ct)) - (\phi(x + ct)) \right)
+    + \frac{1}{2c} - \int_{x + ct}^{x - ct} \psi(s)\ ds\\
+    &= -\frac{1}{2} \left( \phi(x - ct) + \phi(x + ct) \right) - \frac{1}{2c} \int_{x - ct}^{x + ct} \psi(s)\ ds\\
+    &= -\frac{1}{2} \left( \phi(x - ct) + \phi(x + ct) \right) - \frac{1}{2c} \int_{x - ct}^{x + ct} \psi(s)\ ds\\
+    &\neq -u(x, t)
+  \end{align*}
+  So, $\psi$ needs to be even in order for $u(x, t)$ to be true
+\end{solution}
 \end{document}

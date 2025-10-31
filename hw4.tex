@@ -1,0 +1,170 @@
+\documentclass{ben}
+\title{MATH 112A Homework 3}
+\author{Benjamin Tong}
+\date{October 31, 2025}
+
+\begin{document}
+\maketitle
+\section{Monday}
+\subsection{Problem 1}
+Solve
+\[
+    u_{xx} + 3 u_{xt} - 4 u_{tt} = 0,\ u(x, 0) = \sin x,\ u_t(x, 0) = \frac{1}{1 + x^2}
+\]
+\begin{solution}
+First, we rewrite the function and factor. We get
+\begin{align*}
+    \left( \frac{\partial^2}{\partial x^2}
+    + 3 \frac{\partial^2}{\partial x \partial t}
+    - 4 \frac{\partial^2}{\partial t^2} \right) u &= 0\\
+    \left( \partials{x} + 4 \partials{t} \right)
+    \underbrace{\left( \partials{x} - \partials{t} \right) u}_{v} &= 0\\
+    \left( \partials{x} + 4 \partials{t} \right) v &= 0\\
+    v_x + 4 v_t &= 0\\
+    v &= f(4x - t)
+\end{align*}
+Now, we resubstitute in $v = \left( \partials{x} - \partials{t} \right) u$ and we get
+\begin{align*}
+    \left( \partials(x) - \partials{t} \right) u &= f(4x - t)\\
+    u_x - u_t &= f(4x - t)
+\end{align*}
+We use the change of coordinates $x' = x - t$ and $t' = x + t$, and we get
+\begin{align*}
+    u_x - u_t &= f(4x - t)\\
+    (u_{x'} + u_{t'}) - (-u_{x'} + u_{t'})
+    &= f\left(4\left(\frac{1}{2}x' + \frac{1}{2}t'\right) - \left(-\frac{1}{2}x' - \frac{1}{2}t'\right)\right)\\
+    2 u_{x'} &= f\left( 2x' + 2t' - \frac{1}{2}x' + \frac{1}{2}t' \right)\\
+    2 u_{x'} &= f\left(\frac{3}{2} x' + \frac{5}{2} t'\right)\\
+    u_{x'} &= \frac{1}{2} f \left( \frac{3}{2} x' + \frac{5}{2} t' \right)\\
+    u &= \frac{1}{3} F \left( \frac{3}{2} x' + \frac{5}{2} t' \right) + G(t')\\
+    u &= \frac{1}{3} F \left(4x - t\right) + G(x + t)\\
+\end{align*}
+where $F$ and $G$ are the anti-derivatives of $f$ and $g$.
+We also find that
+\[
+    u_t = -\frac{1}{3} f(4x - t) + g(x + t)
+\]
+If we substitute $t = 0$ we find that
+\begin{align*}
+    u(x, 0) &= \frac{1}{3} F(4x) + G(x)\\
+    \sin x &= \frac{1}{3}F(4x) + G(x)\\
+\end{align*}
+Differentiating this we get $\cos x = \frac{4}{3}f(4x) + g(x)$.
+Now, if we substitute $t = 0$ into $u_t(x, t)$ we get
+\begin{align*}
+    u_t(x, 0) &= -\frac{1}{3} f(4x) + g(x)\\
+    \frac{1}{1 + x^2} &= -\frac{1}{3} f(4x) + g(x)\\
+\end{align*}
+So now we have the equations
+\begin{align*}
+    \cos x &= \frac{4}{3}f(4x) + g(x)\\
+    \frac{1}{1 + x^2} &= -\frac{1}{3} f(4x) + g(x)
+\end{align*}
+From this we find that
+\begin{align*}
+    f(x) &= \frac{3}{5} \left( \cos \frac{x}{4} - \frac{1}{1 + \frac{x^2}{16}} \right)\\
+    g(x) &= \frac{1}{5} \left( \cos x + \frac{4}{1 + x^2} \right)
+\end{align*}
+We find that the anti-derivatives of these functions are
+\begin{align*}
+    F(x) &= \frac{3}{5} \left( 4 \sin \left( \frac{x}{4} \right)
+    - 4 \arctan \left( \frac{x}{4} \right) \right) + C\\
+    G(x) &= \frac{1}{5} \left( \sin(x) + 4 \arctan(x) \right) + C
+\end{align*}
+and so we finally get that
+\begin{align*}
+    u(x, t) &= \frac{1}{3} F(4x - t) + G(x + t)\\
+    &= \frac{1}{3} \left( \frac{3}{5} \left( 4 \sin \left( \frac{4x - t}{4} \right)
+    - 4 \arctan \left( \frac{4x - t}{4} \right) \right) \right)
+    + \left( \frac{1}{5} \left( \cos (x + t) + 4 \arctan(x + t) \right) \right)\\
+    &= \frac{4}{5} \sin\left( \frac{4x - t}{4} \right) - 4 \arctan \left( \frac{4x - t}{4} \right)
+    + \frac{1}{5} \cos (x + t) + \frac{4}{5} \arctan(x + t)
+\end{align*}
+\end{solution}
+\newpage
+\section{Wednesday}
+\subsection{Problem 1}
+Solve the following initial value problem.
+\[
+\begin{cases}
+    u_{xx} - 3u_{xt} - 4u_{tt} = 1, & -\infty < x < \infty, 0 < t < \infty\\
+    u(x, 0) = x^2, & -\infty < x < \infty\\
+    u_t(x, 0) = e^x, & -\infty < x < \infty
+\end{cases}
+\]
+\begin{solution}
+  We find that the differential equation is equal to
+  \[
+    \left( \partials{x} - 4 \partials{t} \right) \left( \partials{x} + \partials{t} \right)u = 1
+  \]
+  We can define $v = \left( \partials{x} + \partials{t} \right)u$, and we get the system
+  \begin{align*}
+    \left( \partials{x} - 4 \partials{t} \right)v &= 1\\
+    \left( \partials{x} + \partials{t} \right)u = v
+  \end{align*}
+  First, we solve for $v$. We find that
+  \[
+    \frac{dx}{1} = \frac{dt}{4} = \frac{dv}{1}
+  \]
+  and so
+  \begin{align*}
+    \frac{dx}{dt} &= \frac{-1}{4}\\
+    x &= -\frac{1}{4}t + \xi
+  \end{align*}
+  so the characteristic curves are where $\xi = x + \frac{1}{4}t$ remains constant.
+  Now, we also find that
+  \begin{align*}
+    \frac{dv}{dx} &= 1\\
+    v &= x + f(\xi)\\
+    v &= x + f \left( x + \frac{1}{4}t \right)
+  \end{align*}
+  Now, we solve for $u$. We find that
+  \[
+    \frac{dx}{1} = \frac{dt}{1} = \frac{du}{x + f \left( x + \frac{1}{4}t \right)}
+  \]
+  and so
+  \begin{align*}
+    \frac{dx}{dt} &= 1\\
+    x &= t + \eta\\
+  \end{align*}
+  and so the characteristic curves are where $\eta = x - t$ remains constant.
+  Now, we also find that
+  \[
+    \frac{du}{dx} = x + f \left( x + \frac{1}{4}t \right)
+  \]
+  We use the substitution $t = x - \eta$ in order to rewrite this expression in terms of $x$ and
+  $\eta$. Doing this, we get
+  \begin{align*}
+    \frac{du}{dx} &= x + f \left( x + \frac{1}{4}(x - \eta) \right)\\
+                  &= x + f \left( \frac{5}{4}x - \frac{1}{4}\eta \right)
+  \end{align*}
+  Integrating this on both sides, and using the substitution $\eta = x - t$ we get that
+  \begin{align*}
+    u &= \frac{1}{2} x^2 + \frac{4}{5} F \left( \frac{5}{4} x - \frac{1}{4} \eta \right) + G(\eta)\\
+      &= \frac{1}{2} x^2 + \frac{4}{5} F \left( x + \frac{1}{4}t \right) + G(x - t)
+  \end{align*}
+\end{solution}
+\section{Friday}
+\subsection{Problem 1}
+For a solution $u(x, t)$ of the wave equation with $\rho = T = c = 1$, the energy density is defined
+as
+\[
+    e = \frac{1}{2} \left( u_t^2 + u_x^2 \right)
+\]
+and the momentum density as
+\[
+    p = u_t u_x
+\]
+Show that
+\begin{enumerate}
+    \item $\partials[e]{t} = \partials[p]{x}$ and $\partials[p]{t} = \partials[e]{x}$.
+    \item Show that both $e(x, t)$ and $p(x, t)$ also satisfy the wave equation.
+\end{enumerate}
+\subsection{Problem 2}
+For a wave equation, if significant air resistance $r > 0$ is present, we have an extra term
+proportional to the speed $u_t$, thus the equation becomes
+\[
+    u_{tt} - c^2 u_{xx} + r u_t = 0
+\]
+Show that the energy decreases.
+\end{document}

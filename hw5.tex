@@ -1,0 +1,110 @@
+\documentclass{ben}
+\title{MATH 112A Homework 6}
+\author{Benjamin Tong}
+\date{November 14, 2025}
+
+\begin{document}
+\maketitle
+\section{Problem 1}
+Consider a solution of the diffusion equation
+\[
+    u_t = u_{xx} \text{ in } \{(x, t)\ |\ 0 \leq x \leq \ell, 0 \leq t < \infty\}
+\]
+\begin{enumerate}
+    \item Let $M(T) = $ the maximum of $u(x, t)$ in the closed rectangle
+    \[
+        \{0 \leq x \leq \ell, 0 \leq t \leq T\}.
+    \]
+    Does $M(T)$ increase or decrease as a function of $T$?
+    \item Let $m(T) = $ the minimum of $u(x, t)$ in the closed rectangle
+    \[
+        \{0 \leq x \leq \ell, 0 \leq t \leq T\}.
+    \]
+    Does $m(T)$ increase or decrease as a function of $T$?
+\end{enumerate}
+\begin{solution}
+    \begin{enumerate}
+        \item $M(T)$ increases as a function of $T$. To show this, we will prove by contradiction.
+        \begin{proof}
+            Let $a, b$ be two numbers such that $a \geq b \geq 0$. We assume that
+            $M(T)$ is not increasing, that is, $M(a) < M(b)$.
+            Since $M(b)$ is the maximum on the closed rectangle
+            $\{0 \leq x \leq \ell, 0 \leq t \leq b\}$, there is a point $(x, t)$ on that
+            rectangle such that $u(x, t) = M(b)$. Similarly, using the same argument
+            we argue that there is a point $(x', t')$ on the rectangle
+            $\{0 \leq x \leq \ell, 0 \leq t \leq a\}$ such that $(x', t') = M(a)$.
+            Now, since $u(x', t')$ is the maximum on the closed rectangle, by definition there
+            shouldn't be any $x, t$ in the closed rectangle such that $u(x, t) > M(a)$.
+            However, since the closed rectangle $\{0 \leq x \leq \ell, 0 \leq t \leq b\}$
+            is entirely contained in the closed rectangle $\{0 \leq x \leq \ell, 0 \leq t \leq a\}$,
+            and $u(x, t) = M(b) > M(a)$, we do have an $(x, t)$ in the closed rectangle such that
+            $u(x, t) > M(a)$. So, we have a contradiction and $M(T)$ must be increasing.
+        \end{proof}
+        \item Note that $-m(T)$ is also the maximum of $-u(x, t)$ in the same closed rectangle.
+        According to part 1, $-m(T)$ must be increasing, so $m(T)$ must be decreasing.
+    \end{enumerate}
+\end{solution}
+\section{Problem 2}
+\begin{multipart}
+    \SolutionPart According to the minimum principle the minimum must lie on either
+    $\{(x, 0)\ |\ x \in [0, \ell]\}$ or $\{(x', t) \ |\ x \in \{0, \ell\}, t \in [0, \infty)\}$.
+
+    The minimum along the set $\{(x, 0)\ |\ x \in [0, \ell]\}$ is at the point $(0, \ell)$.
+    The minimum along the set $\{(x', t) \ |\ x \in \{0, \ell\}, t \in [0, \infty)\}$
+    is any point on that set since $u(x', t)$ is always $0$ for all $x'$ in $\{0, \ell\}$
+    and $t$ in $[0, \infty)$ Both minimums are equal to 
+\end{multipart}
+\section{Problem 3}
+Let $k > 0$, $f$ and $g$ are two functions. Consider the following heat equations over
+$(x, t) \in (0, \ell) \times (0, \infty)$:
+\[
+    u_t - ku_{xx} = f(x, t), v_t - kv_{xx} = g(x, t).
+\]
+\begin{enumerate}[label=\textbf{\alph*)}]
+    \item If $f \leq g$, and $u \leq v$ at $x = 0$, $x = \ell$ and $t = 0$. Prove that $u \leq v$
+    for $0 \leq x \leq \ell$, $0 \leq t < \infty$.
+    \item If $v_t - v_{xx} \geq \sin x$ for $0 \leq x \leq \pi$, $0 \leq x \leq \pi$,
+    $0 < t < \infty$, and if $v(0, t) \geq 0$, $v(\pi, t) \geq 0$ and $v(x, 0) \geq \sin x$, use
+    part (a) to show that $v(x, t) \geq (1 - e^{-t})\sin x$
+\end{enumerate}
+\begin{multipart}
+    \SolutionPart
+    \SolutionPart To solve this, we will define a few variables.
+    We let $f$ be the function $f(x, t) = \sin x$, we let $g(x, t) = v_{t} - v_{xx}$, and we
+    define $u(x, t) = \left(1 - e^{-t}\right) \sin x$. We find that
+    \begin{align*}
+        u_t &= e^{-t} \sin x\\
+        u_x &= (1 - e^{-t}) \cos x\\
+        u_{xx} &= (e^{-t} - 1) \sin x
+    \end{align*}
+    Now, observe that $u_t - u_{xx} = \sin x$. By definition, this means that
+    $u_t - u_{xx} = f(x, t)$. We have that $f \leq g$ since $v_t - v_{xx} \geq f(x)$
+    since $f(x) = \sin x$.
+
+    We have shown that $f \leq g$, and now we have to show that $u \leq v$ at
+    $x = 0$, $x = \pi$, and $t = 0$. If $x = 0$ we find that
+    \begin{align*}
+        u(0, t) &= (1 - e^t) \sin 0\\
+                &= (1 - e^t) 0\\
+                &= 0
+    \end{align*}
+    if $x = \ell$ we find that
+    \begin{align*}
+        u(\pi, t) &= (1 - e^t) \sin \pi\\
+                  &= (1 - e^t) 0\\
+                  &= 0
+    \end{align*}
+    if $t = 0$ we find that
+    \begin{align*}
+        u(x, 0) &= (1 - e^0) \sin x\\
+                &= 0 \sin x\\
+                &= 0
+    \end{align*}
+    $v \geq 0$ at $x = 0$ and $x = \ell$, which is also where $u = 0$.
+    So, at $x = 0$ and $x = \ell$, $v \geq u$. Also, $\sin x \geq 0$ at $0 \leq x \leq \pi$, so
+    $v \geq u$ at $t = 0$. Therefore, using part (a), this means that $v \geq u$
+    for $0 \leq x \leq pi$, $0 < t < \infty$.
+    So, $v(x, t) \geq (1 - e^{-t}) \sin x$
+\end{multipart}
+\section{Problem 4}
+\end{document}

@@ -1,0 +1,297 @@
+\documentclass{ben}
+\title{MATH 112A Homework 7}
+\author{Benjamin Tong}
+\date{November 22, 2025}
+\def\erf{\operatorname{erf}}
+
+\begin{document}
+\maketitle
+\section{Problem 1}
+Solve the diffusion equation
+\[
+\begin{cases}
+    u_t = ku_{xx}, & -\infty < x < \infty, t > 0\\
+    u(x, 0) = e^{3x}, & -\infty < x < \infty.
+\end{cases}
+\]
+\begin{solution}
+    We know that the solution to the heat equation is equal to
+    \begin{align*}
+        u(x, t) &= \frac{1}{\sqrt{4 \pi kt}} \int_{-\infty}^{\infty}
+                e^{-\frac{(x - y)^2}{4kt}} \cdot e^{3x}\ dy\\
+                &= \frac{1}{\sqrt{4 \pi kt}} \int_{-\infty}^{\infty}
+                e^{\frac{-(x - y)^2}{4kt} + 3x}\ dy\\
+    \end{align*}
+    We want to express the exponent $E = \frac{-(x - y)^2}{4kt} + 3x$ such that it is the sum of two
+    expressions, with one being a function of $x$ and $t$ only and one being a function of $y$,
+    $x$ and $t$. We find that
+    \begin{align*}
+        E &= \frac{-(x - y)^2}{4kt} + 3x\\
+          &= - \frac{1}{4kt} \left( (x - y)^2 - 12xkt \right)\\
+          &= - \frac{1}{4kt} \left( (x^2 - 2xy + y^2) - 12xkt \right)\\
+          &= - \frac{1}{4kt} \left( y^2 - (2x + 12kt)y + x^2 \right)\\
+          &= - \frac{1}{4kt} \left( y^2 - (2x + 12kt)y + x^2 + (x + 6kt)^2 - (x + 6kt)^2 \right)\\
+          &= - \frac{1}{4kt} \left( (y - x - 6kt)^2 + x^2 - (x + 6kt)^2 \right)\\
+          &= - \frac{1}{4kt} \left( (y - x - 6kt)^2 + (x^2 - (x^2 + 12ktx + 36 k^2 t^2))\right)\\
+          &= -\frac{(y - x - 6kt)^2 - 12kt(x + 3kt)}{4kt}\\
+          &= 3(x + 3kt) - \frac{(y - x - 6kt)^2}{4kt}
+    \end{align*}
+    Now that we have rewritten the exponent in this way, we find that
+    \begin{align*}
+        u(x, t) &= \frac{1}{\sqrt{4 \pi kt}} \int_{-\infty}^{\infty}
+                e^{3(x + 3t)} \cdot e^{\frac{(y - x - 6kt)^2}{4kt}}\ dy\\
+                &= e^{3(x + 3t)} \cdot \frac{1}{\sqrt{4 \pi kt}}
+                \int_{-\infty}^{\infty} e^{-\frac{(y - x - 6kt)^2}{4kt}}\ dy
+    \end{align*}
+    Now, we let $\alpha = \frac{(y - x - 6kt)^2}{\sqrt{4kt}}$ and we substitute it into the integral.
+    Doing this we get
+    \begin{align*}
+        u(x, t) &= \frac{1}{\sqrt{4 \pi kt}} \int_{-\infty}^{\infty} e^{-\alpha^2}
+                \ (\sqrt{4kt} dy)\\
+                &= e^{(3(x + 3t))}
+                \cdot \frac{\sqrt{4kt}}{\sqrt{4 \pi kt}} \int_{-\infty}^{\infty} e^{-\alpha^2}\\
+                &= e^{3(x + 3t)}
+                \cdot \left( \frac{1}{\sqrt{\pi}} \right) \left( \sqrt{\pi} \right)\\
+                &= e^{3(x + 3t)} \cdot 1\\
+                &= e^{3x + 9t}
+    \end{align*}
+    so $u(x, t) = e^{3x + 9t}$ is the solution to the diffusion equation.
+\end{solution}
+\section{Problem 2}
+Solve the diffusion equation
+\[
+\begin{cases}
+    u_t = k u_{xx}, & -\infty < x < \infty, t > 0\\
+    u(x, 0) = x^2, -\infty < x < \infty.
+\end{cases}
+\]
+by the following special method. First show that $u_{xxx}$ satisfies the diffusion equation with
+zero initial condition. Therefore, by uniqueness, $u_{xxx} = 0$. Integrating this result thrice,
+obtain
+\[
+    u(x, t) = A(t)x^2 + B(t)x + C(t)
+\]
+Finally, it is easy to solve for $A$, $B$, and $C$ by plugging into the original problem.
+\begin{solution}
+    We find that since $u(x, 0) = x^2$,
+    \begin{align*}
+        u_x(x, 0) &= 2x\\
+        u_{xx}(x, 0) &= 2\\
+        u_{xxx}(x, 0) &= 0
+    \end{align*}
+    So $u_{xxx}(x, t) = 0$ for all $x$ and $t$. Therefore, $u(x, t)$ must be of the form
+    \[
+        u(x, t) = A(t)x^2 + B(t)x + C(t)
+    \]
+    We find that
+    \begin{align*}
+        u_t &= A'(t)x^2 + B'(t)x + C'(t)\\
+        u_{xx} &= 2A(t)
+    \end{align*}
+    and so
+    \[
+        A'(t)x^2 + B'(t)x + C'(t) = 2kA(t)
+    \]
+    From here we get that
+    \[
+        A'(t)x^2 + B'(t)x + \left( C'(t) - 2k A(t) \right) = 0
+    \]
+    Since $1$, $x$ and $x^2$ are linearly independent, that means that $A'(t)$, $B'(t)$,
+    and $C'(t) - 2kA(t)$ are all equal to $0$. Therefore $A$ and $B$ are constant, and
+    as a result, $C'(t)$ is also constant, meaning that $C'(t)$ is a linear function.
+    So, we have
+    \[
+        u(x, t) = ax^2 + bx + (2kat + d)
+    \]
+    if we plug in $t = 0$ we get
+    \begin{align*}
+        u(x, 0) &= ax^2 + bx + d\\
+        x^2     &= ax^2 + bx + d
+    \end{align*}
+    It is clear from here that $a = 1$, $b = 0$, and $d = 0$. So,
+    the solution to the equation is 
+    \[
+        u(x, t) = x^2 + 2kt
+    \]
+\end{solution}
+\section{Problem 3}
+Consider the diffusion equation on the whole line with the usual intial condition
+$u(x, 0) = \phi(x)$. If $\phi(x)$ is an odd function, show that the solution $u(x, t)$ is also an
+odd function of $x$.
+\begin{solution}
+    In order to show that $u(x, t)$ is odd, we need to show that $u(-x, t) = -u(x, t)$.
+    We know that the solution to the heat equation is
+    \[
+        u(x, t) = \frac{1}{\sqrt{4 \pi kt}}
+        \int_{-\infty}^{\infty} e^{\frac{-(x - y)^2}{4kt}} \phi(y)\ dy
+    \]
+    and so $u(-x, t)$ is
+    \begin{align*}
+        u(-x, t) &= \frac{1}{\sqrt{4 \pi kt}}
+                 \int_{-\infty}^{\infty} e^{\frac{-(-x - y)^2}{4kt}} \phi(y)\ dy\\
+                 &= \frac{1}{\sqrt{4 \pi kt}}
+                 \int_{-\infty}^{\infty} e^{\frac{-(x + y)^2}{4kt}} \phi(y)\ dy
+    \end{align*}
+    Here, we make the substitution $\alpha = -y$. Doing this, the integral becomes
+    \begin{align*}
+        u(-x, t) &= \frac{1}{\sqrt{4 \pi kt}}
+                 -\int_{\infty}^{-\infty} e^{\frac{-(x - \alpha)^2}{4kt}} \phi(-\alpha)\ d \alpha\\
+                 &= \frac{1}{\sqrt{4 \pi kt}}
+                 \int_{-\infty}^{\infty} e^{\frac{-(x - \alpha)^2}{4kt}} \phi(-\alpha)\ d \alpha\\
+    \end{align*}
+    Since $\phi$ is odd, this means that $\phi(-\alpha) = -\phi(\alpha)$. Making this substitution
+    we find that
+    \[
+        u(-x, t) = -\frac{1}{\sqrt{4 \pi kt}}
+        \int_{-\infty}^{\infty} e^{\frac{-(x - \alpha)^2}{4kt}} \phi(\alpha)\ d \alpha
+    \]
+    By definition, the right hand side is equal to $-u(x, t)$. Therefore, $u(-x, t) = -u(x, t)$ and
+    so $u$ is an odd function of $x$.
+\end{solution}
+\section{Problem 4}
+Solve the diffusion equation with variable dissipation:
+\[
+\begin{cases}
+    u_t - k u_{xx} + bt^2u = 0, & -\infty < x < \infty, t > 0\\
+    u(x, 0) = \phi(x), & -\infty < x < \infty.
+\end{cases}
+\]
+where $b > 0$ is a constant. Hint: make the change of variables
+$u(x, t) = e^{-\frac{bt^3}{3}} v(x, t)$
+\begin{solution}
+    First, define $v(x, t)$ to be a function such that $u(x, t) = e^{-\frac{bt^3}{3}} v(x, t)$. 
+    Then, we find that
+    \begin{align*}
+        u_{x}(x, t) &= e^{-\frac{bt^3}{3}} v_x(x, t)\\
+        u_{xx}(x, t) &= e^{-\frac{bt^3}{3}} v_{xx}(x, t)\\
+        u_t(x, t) &= e^{-\frac{bt^3}{3}} v_t(x, t) + (-bt^2) e^{-\frac{bt^3}{3}} v(x, t)
+    \end{align*}
+    Substituting in the values of $u_xx$ and $u_t$ in terms of $v$ into the heat equation, we get
+    \begin{align*}
+        e^{\frac{-bt^3}{3}} v_t + \left( -bt^2 \right) e^{-\frac{-bt^3}{3}} v
+        - k \left( e^{\frac{-bt^3}{3}} v_{xx} \right) + bt^2 e^{\frac{-bt^3}{3}}v
+        &= 0\\
+        e^{\frac{-bt^3}{3}} v_t - k \left( e^{\frac{-bt^3}{3}} v_{xx} \right)
+        &= 0\\
+        e^{\frac{-bt^3}{3}} \left( v_t - k v_{xx} \right)
+        &= 0
+    \end{align*}
+    Since $e^{\frac{-bt^3}{3}} > 0$ for all values of $t$, this means that only
+    $v_t - kv_{xx} = 0$ must be true. Therefore, $v(x, t)$ is a solution to the heat equation
+    with $v(x, 0) = e^{\frac{-b(0)^3}{3}} \phi(x) = \phi(x)$,
+    and so the following formula is true:
+    \[
+        v = \frac{1}{\sqrt{4 \pi kt}} \int_{-\infty}^{\infty}
+        e^{-\frac{(x - y)^2}{4kt}} \cdot \phi(y)\ dy
+    \]
+    Now, we substitute this formula for $v$ into the equation $u = e^{\frac{-bt^3}{3}}$
+    and we get that
+    \[
+        u = \frac{e^{\frac{-bt^3}{3}}}{\sqrt{4 \pi kt}}
+        \int_{-\infty}^{\infty} e^{-\frac{(x - y)^2}{4kt}} \phi(y)\ dy
+    \]
+\end{solution}
+\section{Problem 5}
+Let $\phi(x)$ be a continuous function such that $|\phi(x)| \leq Ce^{a x^2}$. Show that formula
+\[
+    u(x, t) = \frac{1}{\sqrt{4 \pi kt}}
+    \int_{-\infty}^{\infty} e^{-\frac{(x - y)^2}{4kt}}\phi(y)\ dy
+\]
+for the solution of the diffusion equation makes sense for $0 < t < \frac{1}{4ak}$, but not
+necessarily for larger $t$.
+\begin{solution}
+    We will prove this by example. Let $\phi(x) = Ce^{ay^2}$. We will compute
+    $u(0, \frac{1}{4ak})$. We find that
+    \begin{align*}
+        u\left( 0, \frac{1}{4ak} \right) &= \frac{1}{\sqrt{4 \pi k \left(\frac{1}{4ak}\right)}}
+        \int_{-\infty}^{\infty} e^{-\frac{(0 - y)^2}{4k(\frac{1}{4ak})}} C e^{ay^2}\ dy\\
+                            &= \sqrt{\frac{a}{\pi}} \int_{-\infty}^{\infty}
+                            e^{-ay^2} \cdot Ce^{ay^2}\ dy\\
+                            &= \sqrt{\frac{a}{\pi}} \int_{-\infty}^{\infty} C\ dy\\
+                            &= \infty
+    \end{align*}
+    and so $u(x, t)$ does not make sense for $\phi(x) = Ce^{ay^2}$ when $t = \frac{1}{4ak}$
+\end{solution}
+\section{Problem 6}
+Solve 
+\[
+\begin{cases}
+    u_t = k u_{xx}, & 0 < x < \infty, t > 0,\\
+    u(x, 0) = e^{-x}, & 0 < x < \infty,\\
+    u(0, t) = 0, t \geq 0.
+\end{cases}
+\]
+\begin{solution}
+    In order to solve this, we use the formula
+    \[
+    u(x, t) = \frac{1}{\sqrt{4 \pi kt}}
+    \int_{0}^{\infty} \left( e^{\frac{-(x - y)^2}{4kt}} - e^{\frac{-(x + y)^2}{4kt}} \right)
+    e^{-y}\ dy
+    \]
+    In order to do this, first we split up the integral into two, like so
+    \[
+    u(x, t) = 
+    \frac{1}{\sqrt{4 \pi kt}} \int_{0}^{\infty} e^{\frac{-(x - y)^2}{4kt} - y}\ dy
+    - \frac{1}{\sqrt{4 \pi kt}} \int_{0}^{\infty} e^{\frac{-(x + y)^2}{4kt} - y}\ dy
+    \]
+    Now, we let $E_1 = \frac{-(x - y)^2}{4kt} - y$ and $E_2 = \frac{-(x + y)^2}{4kt}$.
+    We will rewrite $E_1$ and $E_2$ in order to make the integral above easier to integrate.
+    We find that for $E_1$,
+    \begin{align*}
+        E_1 &= \frac{-(x - y)^2}{4kt} - y\\
+            &= \frac{x^2 - 2xy + y^2 + 4kty}{-4kt}\\
+            &= \frac{x^2 + (4kt - 2x)y + y^2}{-4kt}\\
+            &= \frac{y^2 + (4kt - 2x)y + x^2}{-4kt}\\
+            &= \frac{y^2 + (4kt - 2x)y + ((2kt - x)^2 - (2kt - x)^2)+ x^2}{-4kt}\\
+            &= \frac{(y^2 + (4kt - 2x)y + (2kt - x)^2) + (x^2 - (2kt - x)^2)}{-4kt}\\
+            &= \frac{(y + 2kt - x)^2 + (x^2 - (2kt - x)^2)}{-4kt}\\
+            &= \frac{(2kt - x)^2 - x^2}{4kt} - \frac{(y + 2kt - x)^2}{4kt}\\
+            &= \frac{4k^2t^2 - 4ktx + x^2 - x^2}{4kt} - \frac{(y + 2kt - x)^2}{4kt}\\
+            &= (kt - x) - \frac{(y + 2kt - x)^2}{4kt}
+    \end{align*}
+    We find that for $E_2$,
+    \begin{align*}
+        E_2 &= \frac{-(x + y)^2}{4kt} - y\\
+            &= \frac{x^2 + 2xy + y^2 + 4kty}{-4kt}\\
+            &= \frac{y^2 + (2x + 4kt)y + x^2}{-4kt}\\
+            &= \frac{y^2 + (2x + 4kt)y + (x + 2kt)^2 - (x + 2kt)^2 + x^2}{-4kt}\\
+            &= \frac{(x + 2kt)^2 - x^2}{4kt} - \frac{(y + x + 2kt)^2}{4kt}\\
+            &= \frac{x^2 + 4ktx + 4k^2t^2 - x^2}{4kt} - \frac{(y + x + 2kt)^2}{4kt}\\
+            &= \frac{4ktx + 4k^2t^2}{4kt} - \frac{(y + x + 2kt)^2}{4kt}\\
+            &= (x + kt) - \frac{(y + x + 2kt)^2}{4kt}
+    \end{align*}
+    Now, we rewrite the integral as
+    \[
+    u(x, t) =
+    \frac{1}{\sqrt{4 \pi kt}} \int_{0}^{\infty} e^{(kt - x) - \frac{(y + 2kt - x)^2}{4kt}}\ dy
+    + \frac{1}{\sqrt{4 \pi kt}} \int_{0}^{\infty} e^{(kt - x) - \frac{(y + 2kt + x)^2}{4kt}}\ dy
+    \]
+    Since $e^{kt - x}$ is a constant we can rewrite this entire equation as
+    \[
+    u(x, t) =
+    \frac{1}{\sqrt{4 \pi kt}} e^{(kt - x)}
+    \left( \int_{0}^{\infty} e^{\frac{-(y + 2kt - x)^2}{4kt}}\ dy
+    + \int_{0}^{\infty} e^{\frac{-(y + 2kt + x)^2}{4kt}}\ dy\right)
+    \]
+    We now apply a change of variables. We let $\alpha = \frac{(y + 2kt - x)}{\sqrt{4kt}}$
+    and $\beta = \frac{(y + 2kt + x)}{\sqrt{4kt}}$, and we get
+    \begin{align*}
+        u(x, t)
+        &= \frac{1}{\sqrt{4 \pi kt}} e^{(kt - x)}
+        \left( \int_{0}^{\infty} e^{\frac{-(y + 2kt - x)^2}{4kt}}\ dy
+        + \int_{0}^{\infty} e^{\frac{-(y + 2kt + x)^2}{4kt}}\ dy\right)\\
+        &= \frac{e^{kt - x}}{\sqrt{4 \pi kt}}
+        \left(\int_{-\frac{(2kt - x)^2}{4kt}}^{\infty} e^{-\alpha^2}\ (\sqrt{4kt} d\alpha)
+        + \int_{-\frac{(2kt + x)^2}{4kt}}^{\infty} e^{-\beta^2}\ (\sqrt{4kt} d\beta) \right)\\
+        &= e^{kt - x} \left( \frac{1}{\sqrt{\pi}} 
+        \left( \int_{-\frac{(2kt - x)^2}{4kt}}^{\infty} e^{-\alpha^2}
+        + \int_{-\frac{(2kt + x)^2}{4kt}}^{\infty} e^{-\beta^2} \right) 
+        \right)\\
+        &= e^{kt - x}
+        \left( \left( \frac{1}{2} - \frac{1}{2} \erf \left( -\frac{(2kt - x)^2}{4kt} \right) \right)
+        + \left( \frac{1}{2} - \frac{1}{2} \erf \left( -\frac{(2kt - x)^2}{4kt} \right) \right) \right)\\
+        &= e^{kt - x} \left( 1 - \frac{1}{2} \erf \left( -\frac{(2kt - x)^2}{4kt} \right) 
+        - \frac{1}{2} \erf \left( -\frac{(2kt - x)^2}{4kt} \right) \right)
+    \end{align*}
+\end{solution}
+\end{document}

@@ -160,6 +160,17 @@ Show that
     \item $\partials[e]{t} = \partials[p]{x}$ and $\partials[p]{t} = \partials[e]{x}$.
     \item Show that both $e(x, t)$ and $p(x, t)$ also satisfy the wave equation.
 \end{enumerate}
+\begin{solution}
+  \begin{enumerate}
+    \item First, we find that
+    \begin{align*}
+      \partials[e]{t} &= u_{tt} + \frac{1}{2}u_x^2\\
+      \partials[p]{x} &= u_t u_{xx}\\
+      \partials[p]{t} &= u_{tt} u_x\\
+      \partials[e]{x} &= \frac{1}{2} u_t^2 + u_{xx}
+    \end{align*}
+  \end{enumerate}
+\end{solution}
 \subsection{Problem 2}
 For a wave equation, if significant air resistance $r > 0$ is present, we have an extra term
 proportional to the speed $u_t$, thus the equation becomes

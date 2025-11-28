@@ -16,82 +16,55 @@
     \end{cases}
   \]
   \begin{solution}
-    We use the formula that we achieve after doing the odd extension approach, which is
+    First, note that $\sinh x$ is odd. This means that the function is equal to its
+    own odd extension, and so we are free to use the whole line formula:
     \[
-      u(x, t) = \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} \left( 
-      e^{\frac{-(x - y)^2}{4kt}} - e^{\frac{-(x + y)^2}{4kt}}\right) \sinh y\ dy
+      u(x, t) = \frac{1}{\sqrt{4\pi kt}} \int_{-\infty}^{\infty}
+      \left(e^{\frac{-(x - y)^2}{4kt}}\right) \sinh y \ dy
     \]
     Now, we note that $\sinh y = \frac{e^y - e^{-y}}{2}$ and we get that
     \begin{align*}
-      u(x, t) &= \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} \left( 
-      e^{\frac{-(x - y)^2}{4kt}} - e^{\frac{-(x + y)^2}{4kt}}\right) \sinh y\ dy\\
-              &= \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} \left(
-              e^{\frac{-(x - y)^2}{4kt}} - e^{\frac{-(x + y)^2}{4kt}}\right)
-              \left( \frac{e^{y}}{2} - \frac{e^{-y}}{2} \right)\ dy\\
-              &= \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} \left( e^{\frac{-(x - y)^2}{4kt}}
-              \right) \left( \frac{e^{y}}{2} - \frac{e^{-y}}{2} \right)
-              \ dy - \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} \left( e^{\frac{-(x + y)^2}{4kt}}
-              \right) \left( \frac{e^{y}}{2} - \frac{e^{-y}}{2} \right)\ dy\\
-              &= \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty}
-              \frac{e^{\frac{-(x - y)^2}{4kt} + y}}{2} - \frac{e^{\frac{-(x - y)^2}{4kt} - y}}{2}\ 
-              dy - \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty}
-              \frac{e^{\frac{-(x + y)^2}{4kt} + y}}{2} - \frac{e^{\frac{-(x + y)^2}{4kt} - y}}{2}\
-              dy\\
-              &= \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} \frac{e^{\frac{-(x - y)^2}{4kt} + y}}{2}
-              \ dy
-              - \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} \frac{e^{\frac{-(x - y)^2}{4kt} - y}}{2}
-              \ dy
-              - \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} \frac{e^{\frac{-(x + y)^2}{4kt} + y}}{2}
-              \ dy\\
-              &+ \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} \frac{e^{\frac{-(x + y)^2}{4kt} - y}}{2}
-              \ dy
+      u(x, t) &= \frac{1}{\sqrt{4\pi kt}} \int_{-\infty}^{\infty}
+      \left(e^{\frac{-(x - y)^2}{4kt}}\right) \sinh y \ dy\\
+      &= \frac{1}{\sqrt{4\pi kt}} \int_{-\infty}^{\infty}
+      \left(e^{\frac{-(x - y)^2}{4kt}}\right) \left(\frac{e^y}{2} - \frac{e^{-y}}{2}\right)\ dy\\
+      &= \frac{1}{2\sqrt{4\pi kt}} \int_{-\infty}^{\infty} e^{\frac{-(x - y)^2}{4kt} + y}
+      - \frac{1}{2\sqrt{4\pi kt}} \int_{-\infty}^{\infty} e^{\frac{-(x - y)^2}{4kt} - y}
     \end{align*}
-    We find that all these integrals are of the general form
+    Now, note that the exponents on both integrals are of the form
     \[
-      \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} \frac{e^{\frac{-(y - ax)^2}{4kt} + by}}{2}\ dy
+      E = \frac{-(x - y)^2}{4kt} \pm y
     \]
-    We find that we can rewrite the exponent as
+    Rewriting this exponent, we get
     \begin{align*}
-      \frac{-(y - ax)^2}{4kt} + by &= \frac{4bkty - y^2 + 2axy - x^2}{4kt}\\
-      &= \frac{-y^2 + (2ax + 4bkt)y - x^2 + (ax + 2bkt)^2 - (ax + 2bkt)^2}{4kt}\\
-      &= \frac{-(y - ax - 2bkt)^2 + (ax + 2bkt)^2 - x^2}{4kt}\\
-      &= \frac{-(y - ax - 2kbt)^2 + (a^2 - 1)x^2 + 4abktx + 4 b^2 k^2 t^2}{4kt}\\
-      &= \frac{-(y - ax - 2kbt)^2 + (a^2 - 1)x^2}{4kt} + (abx + bkt)
+      E &= \frac{-(x - y)^2}{4kt} \pm y\\
+        &= \frac{-x^2 + (2x \pm 4kt)y - y^2}{4kt}\\
+        &= \frac{-x^2 + (x^2 \pm 4ktx + 4 k^2 t^2) - (y - x \mp 2kt)^2}{4kt}\\
+        &= (kt \pm x) - \frac{(y - x \mp 2kt)^2}{4kt}
     \end{align*}
-    If $|a| = 1$, which is true of all the integrals, then $a^2 - 1 = 0$,
-    and so we can simplify this expression down to
+    and thus we can rewrite the integral like this:
     \[
-      \frac{-(y - ax - 2kbt)^2}{4kt} + (abx + bkt)
+    u(x, t) = \frac{e^{kt + x}}{2 \sqrt{4 \pi kt}} \int_{-\infty}^{\infty}
+    e^{\frac{-(y - x - 2kt)^2}{4kt}}\ dy
+    - \frac{e^{kt - x}}{2 \sqrt{4 \pi kt}}
+    e^{\frac{-(y - x + 2kt)^2}{4kt}}\ dy
     \]
-    We now have the integral
-    \[
-      \frac{e^{abx + bkt}}{2\sqrt{4\pi kt}} \int_{0}^{\infty} e^{\frac{-(y - ax - 2bkt)^2}{4kt}}\ dy
-    \]
-    We apply the change of variables $\alpha = \frac{y - ax - 2bkt}{\sqrt{4kt}}$ and we get that
+    Now, let $\alpha = \frac{y - x - 2kt}{\sqrt{4kt}}$ and $\beta = \frac{y - x + 2kt}{\sqrt{4kt}}$
+    and substitute these into the integral. Doing this, we get
     \begin{align*}
-      \frac{1}{2\sqrt{4\pi kt}} \int_{0}^{\infty} e^{\frac{-(y - ax - 2bkt)^2}{4kt}}\ dy
-      &= \frac{e^{(abx + bkt)}}{2\sqrt{\pi}} \int_{\frac{-ax - 2bkt}{\sqrt{4kt}}}^{\infty}
-      e^{-\alpha^2}\ d\alpha\\
-      &= \frac{e^{(abx + bkt)}}{4} \left(1 - \erf \left( \frac{-ax - 2bkt}{\sqrt{4kt}}
-      \right) \right)\\
-      &= \frac{e^{(abx + bkt)}}{4} \left(1 + \erf \left( \frac{ax + 2bkt}{\sqrt{4kt}} \right) \right)
+      u(x, t) &= \frac{e^{kt + x}}{2 \sqrt{4 \pi kt}} \int_{-\infty}^{\infty}
+      e^{-\alpha^2}\ (\sqrt{4kt} d \alpha
+      - \frac{e^{kt - x}}{2 \sqrt{4 \pi kt}} \int_{-\infty}^{\infty}
+      e^{-\beta^2}\ (\sqrt{4kt} d \beta)\\
+      &= \frac{e^{kt + x}}{2\sqrt{\pi}} \int_{-\infty}^{\infty} e^{-\alpha^2}\ d\alpha
+      - \frac{e^{kt - x}}{2\sqrt{\pi}} \int_{-\infty}^{\infty} e^{-\beta^2}\ d\beta\\
+      &= \frac{e^{kt + x}}{2\sqrt{\pi}} (\sqrt{\pi}) - \frac{e^{kt - x}}{2\sqrt{\pi}} (\sqrt{\pi})\\
+      &= \frac{e^{kt + x}}{2} - \frac{e^{kt - x}}{2}\\
+      &= e^{kt} \left(\frac{e^x}{2} - \frac{e^{-x}}{2}\right)\\
+      &= e^{kt} \sinh(x)
     \end{align*}
-    Using this generalized formula we get that $u(x, t)$ can be rewritten as
-    \begin{align*}
-      u(x, t) &= \frac{e^{(x+kt)}}{4} \left(1+\erf \left(\frac{x+2kt}{\sqrt{4kt}}\right)\right)
-               - \frac{e^{(-x-kt)}}{4} \left(1+\erf \left(\frac{x-2kt}{\sqrt{4kt}}\right)\right)\\
-              &- \frac{e^{(-x+kt)}}{4} \left(1+\erf \left(\frac{-x+2kt}{\sqrt{4kt}}\right)\right)
-               + \frac{e^{(x-kt)}}{4} \left(1+\erf \left(\frac{-x-2kt}{\sqrt{4kt}}\right)\right)
-    \end{align*}
-    We now take advantage of the fact that $\erf$ is odd. We rewrite this as
-    \begin{align*}
-      u(x, t) &= \frac{e^{(x+kt)}}{4} \left(1+\erf \left(\frac{x+2kt}{\sqrt{4kt}}\right)\right)
-               - \frac{e^{-(x+kt)}}{4} \left(1+\erf \left(\frac{x-2kt}{\sqrt{4kt}}\right)\right)\\
-              &- \frac{e^{-(x-kt)}}{4} \left(1-\erf \left(\frac{x-2kt}{\sqrt{4kt}}\right)\right)
-               + \frac{e^{(x-kt)}}{4} \left(1-\erf \left(\frac{x+2kt}{\sqrt{4kt}}\right)\right)
-    \end{align*}
-    Now, according to Mathematica, I am wrong, and the solution is actually
-    $u(x, t) = e^{kt} \sinh(x)$. We can check that this is the solution by computing
+    Now, if you don't believe that we got the correct answer by using the whole line formula, we
+    can check that this is the solution by computing
     $u_{xx}$ and $u_t$. We find that
     \begin{align*}
       u &= \sinh(x) \cdot e^{kt}\\
@@ -99,11 +72,11 @@
       u_{xx} &= \sinh(x) \cdot e^{kt}\\
       u_t &= k \cdot \sinh(x) \cdot e^{kt}
     \end{align*}
-    This satisfies $u_{xx} = ku_t$, so $u(x, t) = e^x \sinh(x)$ is the correct solution.\\
-    Before I end this problem, I would like to give a shoutout to Desmos for
-    sanity checking my solution.
+    This satisfies $u_{xx} = ku_t$. Next, we check if the initial condition is satisfied.
+    Since $e^{kt} = 1$ if $t = 0$ regardless of what $k$ is, this means that $u(x, 0) = \sinh(x)$ is
+    satisfied. Finally, since $\sinh(0) = 0$, $e^{kt}\sinh(0) = 0$ for all $k, t$. Therefore,
+    the boundary condition is satisfied and this is a valid solution.
   \end{solution}
-  \newpage
   \section{Problem 2}
   Solve the diffusion equation:
   \[
@@ -113,6 +86,7 @@
       u_{x}(0, t) = 0, & t \ge 0.
     \end{cases}
   \]
+  \begin{solution}
   First, we use the equation
   \[
   u(x, t) = \frac{1}{\sqrt{4 \pi kt}} \int_{0}^{\infty}
@@ -187,6 +161,7 @@
     \right)\\
     &= \frac{\sqrt{4kt}}{\sqrt{\pi}} e^{\frac{-x^2}{4kt}} + x \erf \left(\frac{x}{4kt}\right)
   \end{align*}
+  \end{solution}
   \newpage
   \section{Problem 3}
   Consider the following problem with a Robin boundary condition:

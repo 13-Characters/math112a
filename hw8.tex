@@ -16,7 +16,6 @@
     \end{cases}
   \]
   \begin{solution}
-<<<<<<< HEAD
     First, note that $\sinh x$ is odd. This means that the function is equal to its
     own odd extension, and so we are free to use the whole line formula:
     \[
@@ -77,101 +76,7 @@
     Since $e^{kt} = 1$ if $t = 0$ regardless of what $k$ is, this means that $u(x, 0) = \sinh(x)$ is
     satisfied. Finally, since $\sinh(0) = 0$, $e^{kt}\sinh(0) = 0$ for all $k, t$. Therefore,
     the boundary condition is satisfied and this is a valid solution.
-=======
-    We use the formula that we achieve after doing the odd extension approach, which is
-    \[
-      u(x, t) = \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} \left( 
-      e^{\frac{-(x - y)^2}{4kt}} - e^{\frac{-(x + y)^2}{4kt}}\right) \sinh y\ dy
-    \]
-    Now, we note that $\sinh y = \frac{e^y - e^{-y}}{2}$ and we get that
-    \begin{align*}
-      u(x, t) &= \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} \left( 
-      e^{\frac{-(x - y)^2}{4kt}} - e^{\frac{-(x + y)^2}{4kt}}\right) \sinh y\ dy\\
-              &= \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} \left(
-              e^{\frac{-(x - y)^2}{4kt}} - e^{\frac{-(x + y)^2}{4kt}}\right)
-              \left( \frac{e^{y}}{2} - \frac{e^{-y}}{2} \right)\ dy\\
-              &= \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} \left( e^{\frac{-(x - y)^2}{4kt}}
-              \right) \left( \frac{e^{y}}{2} - \frac{e^{-y}}{2} \right)
-              \ dy - \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} \left( e^{\frac{-(x + y)^2}{4kt}}
-              \right) \left( \frac{e^{y}}{2} - \frac{e^{-y}}{2} \right)\ dy\\
-              &= \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty}
-              \frac{e^{\frac{-(x - y)^2}{4kt} + y}}{2} - \frac{e^{\frac{-(x - y)^2}{4kt} - y}}{2}\ 
-              dy - \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty}
-              \frac{e^{\frac{-(x + y)^2}{4kt} + y}}{2} - \frac{e^{\frac{-(x + y)^2}{4kt} - y}}{2}\
-              dy\\
-              &= \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} \frac{e^{\frac{-(x - y)^2}{4kt} + y}}{2}
-              \ dy
-              - \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} \frac{e^{\frac{-(x - y)^2}{4kt} - y}}{2}
-              \ dy
-              - \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} \frac{e^{\frac{-(x + y)^2}{4kt} + y}}{2}
-              \ dy\\
-              &+ \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} \frac{e^{\frac{-(x + y)^2}{4kt} - y}}{2}
-              \ dy
-    \end{align*}
-    We find that all these integrals are of the general form
-    \[
-      \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} \frac{e^{\frac{-(y - ax)^2}{4kt} + by}}{2}\ dy
-    \]
-    We find that we can rewrite the exponent as
-    \begin{align*}
-      \frac{-(y - ax)^2}{4kt} + by &= \frac{4bkty - y^2 + 2axy - x^2}{4kt}\\
-      &= \frac{-y^2 + (2ax + 4bkt)y - x^2 + (ax + 2bkt)^2 - (ax + 2bkt)^2}{4kt}\\
-      &= \frac{-(y + ax + 2bkt)^2 + (ax + 2bkt)^2 - x^2}{4kt}\\
-      &= \frac{-(y + ax + 2kbt)^2 + (a^2 - 1)x^2 + 4abkt + 4 b^2 k^2 t^2}{4kt}\\
-      &= \frac{-(y + ax + 2kbt)^2 + (a^2 - 1)x^2}{4kt} + (abx + bkt)
-    \end{align*}
-    If $|a| = 1$, which is true of all the integrals, then $a^2 - 1 = 0$,
-    and so we can simplify this expression down to
-    \[
-      \frac{(-y + ax + 2kbt)}{4kt} + (abx + bkt)
-    \]
-    We now have the integral
-    \[
-      \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} e^{\frac{-(y + ax + 2bkt)^2}{4kt}}\ dy
-    \]
-    We apply the change of variables $\alpha = \frac{y + ax + 2bkt}{\sqrt{4kt}}$ and we get that
-    \begin{align*}
-      \frac{1}{\sqrt{4\pi kt}} \int_{0}^{\infty} e^{\frac{-(y + ax + 2bkt)^2}{4kt}}\ dy
-      &= \frac{e^{(abx + bkt)}}{\sqrt{\pi}} \int_{\frac{ax + 2bkt}{\sqrt{4kt}}}^{\infty}
-      e^{-\alpha^2}\ d\alpha\\
-      &= e^{(abx + bkt)} \left( \frac{1}{2} - \frac{1}{2} \erf \left( \frac{ax + 2bkt}{\sqrt{4kt}}
-      \right) \right)
-    \end{align*}
-    Using this generalized formula we get that $u(x, t)$ can be rewritten as
-    \begin{align*}
-      u(x, t) &= e^{-x + kt} \left( \frac{1}{2} - \frac{1}{2}
-      \erf \left( \frac{-x + 2kt}{\sqrt{4kt}} \right) \right)
-      - e^{-x - kt} \left( \frac{1}{2} - \frac{1}{2}
-      \erf \left( \frac{-x - 2kt}{\sqrt{4kt}} \right) \right)\\
-      &- e^{ x + kt} \left( \frac{1}{2} - \frac{1}{2}
-      \erf \left( \frac{ x + 2kt}{\sqrt{4kt}} \right) \right)
-      + e^{ x - kt} \left( \frac{1}{2} - \frac{1}{2}
-      \erf \left( \frac{ x - 2kt}{\sqrt{4kt}} \right) \right)\\
-              &= \frac{1}{2} \left( e^{-x + kt}
-              - \erf \left( \frac{-x + 2kt}{\sqrt{4kt}} \right) \right)
-              + \frac{1}{2} \left( e^{x - kt}
-              - \erf \left( \frac{x - 2kt}{\sqrt{4kt}} \right) \right)\\
-              &- \frac{1}{2} \left( e^{-x - kt}
-              - \erf \left( \frac{-x - 2kt}{\sqrt{4kt}} \right) \right)
-              - \frac{1}{2} \left( e^{x + kt}
-              - \erf \left( \frac{x + 2kt}{\sqrt{4kt}} \right) \right)
-    \end{align*}
-    We now take advantage of the fact that $\erf$ is odd. We rewrite this as
-    \begin{align*}
-      &= \frac{1}{2} \left( e^{-x + kt}
-      + \erf \left( \frac{x - 2kt}{\sqrt{4kt}} \right) \right)
-      + \frac{1}{2} \left( e^{x - kt}
-      - \erf \left( \frac{x - 2kt}{\sqrt{4kt}} \right) \right)\\
-      &- \frac{1}{2} \left( e^{-x - kt}
-      + \erf \left( \frac{x + 2kt}{\sqrt{4kt}} \right) \right)
-      - \frac{1}{2} \left( e^{x + kt}
-      - \erf \left( \frac{x + 2kt}{\sqrt{4kt}} \right) \right)\\
-      &= \frac{1}{2} \left( e^{-x + kt} + e^{x - kt} \right)
-      - \frac{1}{2} \left( e^{-x - kt} + e^{x + kt} \right)\\
-      &= \cosh(x - kt) - \cosh(x + kt)
-    \end{align*}
->>>>>>> 131c5ca (Finished Homework 8, Problem 1)
-  \end{solution}
+ \end{solution}
   \section{Problem 2}
   Solve the diffusion equation:
   \[
@@ -181,7 +86,6 @@
       u_{x}(0, t) = 0, & t \ge 0.
     \end{cases}
   \]
-<<<<<<< HEAD
   \begin{solution}
   First, we use the equation
   \[
@@ -259,8 +163,6 @@
   \end{align*}
   \end{solution}
   \newpage
-=======
->>>>>>> 131c5ca (Finished Homework 8, Problem 1)
   \section{Problem 3}
   Consider the following problem with a Robin boundary condition:
   \[
@@ -271,38 +173,76 @@
     \end{cases}
   \]
   The purpose of this exercise is to verify the solution formula for this equation. Let $f(x) = x$
-  for $x > 0$, let $f(x) = x + 1 - e^{2x}$ and let
+  for $x > 0$, let $f(x) = x + 1 - e^{2x}$ for $x < 0$, and let
   \[
     v(x, t) = \frac{1}{\sqrt{4 \pi kt}} \int_{-\infty}^{\infty} e^{-\frac{(x - y)^{2}}{4kt}}
     f(y)\ dy
   \]
   \begin{enumerate}
     \item What PDE and initial condition does $v(x, t)$ satisfy for $x \in (-\infty, \infty)$?
-    \footnote{The homework PDF says $(\infty, \infty)$. I assumed it was a typo and interpreted
-    it as $(-\infty, \infty)$}.
     \item Let $w = v_{x} - 2v$. What PDE and initial condition does $w$ satisfy for
     $-\infty < x < \infty$?
     \item Show that $f'(x) - 2f(x)$ is an odd function (for $x \neq 0$).
     \item Show that $w$ is an odd function of $x$.
     \item Assume uniqueness, deduce that $v(x, t)$ solves the equation for $x > 0$.
   \end{enumerate}
-<<<<<<< HEAD
   \begin{solution}
-    First, we find that $v(x, t)$ satisfies the initial value problem
-    \[
-    \begin{cases}
-      v_t = kv_{xx}, & -\infty < x < \infty, t > 0\\
-      v(x, 0) = x + 1 - e^{2x}, & 0 < x < \infty
-    \end{cases}
-    \]
-    now let $w = v_x - 2v$. $w(x, t)$ satisfies the initial value problem
-    \[
-    \begin{cases}
-    \end{cases}
-    \]
+    \begin{enumerate}
+      \item Because the formula for $v(x, t)$ obeys the formula for the heat equation 
+      on the whole line, this means that $v$ is the solution to the following
+      initial value problem:
+      \[
+        \begin{cases}
+          v_{t} = kv_{xx},& -\infty < x < \infty\\
+          v(x, 0) = f(x)
+        \end{cases}
+      \]
+      \item $w$ satisfies the heat equation since $v$ and $v_x$ are solutions and $v_x - 2_v$
+      is a linear combination of the solutions $v$ and $v_x$. We can also show explicitly
+      that $w_t = w_xx$ by showing that
+      \begin{align*}
+        w_t &= (v_{x} - 2v)_{t}\\
+            &= v_{xt} - 2v_{t}\\
+            &= v_{tx} - 2v_{t}\\
+            &= (v_{t})_{x} - 2(v_{t})\\
+            &= (v_{xx})_{x} - 2(v_{xx})\\
+            &= w_{xx}
+      \end{align*}
+      \item First of all, we calculate the value of $f'(x) - 2f(x)$. We find that if
+      $x > 0$ then
+      \[
+        f'(x) - 2f(x) = 1 - 2x
+      \]
+      and if $x < 0$ then
+      \begin{align*}
+        f'(x) - 2 f(x) &= (1 - 2e^{2x}) - 2(x + 1 - e^{2x})\\
+                       &= 1 - 2e^{2x} - 2x - 2 + 2e^{2x}\\
+                       &= -1 - 2x
+      \end{align*}
+      without loss of generality, assume that $x > 0$. Then,
+      \begin{align*}
+        -f(-x) &= -1 -2(-x)\\
+               &= -1 + 2x\\
+               &= -(1 - 2x)\\
+               &= -f(x)
+      \end{align*}
+      and so $f'(x) - 2f(x)$ is odd.
+      \item Since $w(x, 0) = f'(x) - 2f(x)$, and $f'(x) - 2f(x)$ is odd, then $w$ must be odd
+      with respect to $x$.
+      \item Since $w$ is odd, we find that $w$ also obeys the following initial value problem
+      \[
+        \begin{cases}
+          w_{t} = kw_{xx} & 0 < x < \infty, t > 0\\
+          w(x, 0) = f'(x) - 2 f(x) & 0 < x < \infty, t > 0\\
+          w(0, t) = 0 & 0 < \infty, t > 0
+        \end{cases}
+      \]
+      Since $w(0, t) = 0$ is true, this also means that $v_{x}(0, t) - 2v(0, t) = 0$.
+      Since $v(x, 0) = x$ for $0 < x < \infty$ and $v$ satisfies the heat equation, $v$ satisfies
+      the inital value problem with a
+      Robin boundary condition shown at the beginning of the problem.
+    \end{enumerate}
   \end{solution}
-=======
->>>>>>> 131c5ca (Finished Homework 8, Problem 1)
   \section{Problem 4}
   Solve
   \[
@@ -313,6 +253,41 @@
     \end{cases}
   \]
   Using the reflection method. This solution has a singularity; find its location.
+  \begin{solution}
+    In order to solve this equation, we will use the formula for the half-line.
+    If $x > 2t$, then we use the formula
+    \[
+      u = \frac{1}{2} \left[ \phi(x + ct) + \phi(x - ct) \right]
+      + \frac{1}{2c} \int_{x - ct}^{x + ct} \psi(s)\ ds
+    \]
+    with $\phi(x) = u(x, 0)$, $\psi(x) = u_{t}(x, 0)$, and $c = 2$.
+    We find that the solution is equal to
+    \begin{align*}
+      u &= \frac{1}{2} \left[ 1 + 1 \right] + \frac{1}{2(2)} \int_{x - 2t}^{x + 2t} 0\ ds\\
+        &= \frac{1}{2} (2) + 0\\
+        &= 1
+    \end{align*}
+    If $x < 2t$, then we use the formula
+    \[
+      u = \frac{1}{2} \left[ \phi(ct + x) - \phi(ct - x) \right]
+      + \frac{1}{2c} \int_{ct - x}^{ct + x} \phi(s)\ ds
+    \]
+    We find that the solution is equal to
+    \begin{align*}
+      u &= \frac{1}{2} \left[ 1 - 1 \right] + \frac{1}{2(2)} \int_{2t - x}^{2t + x} 0\ ds\\
+        &= \frac{1}{2} (0) + 0\\
+        &= 0
+    \end{align*}
+    So, the solution $u(x, t)$ is equal to
+    \[
+      u(x, t) =
+      \begin{cases}
+        1 & \text{if } x > 2t\\
+        0 & \text{if } x < 2t
+      \end{cases}
+    \]
+    With this formula it is clear that there is a singularity at $x = 2t$.
+  \end{solution}
   \section{Problem 5}
   Consider the wave equation
   \[
@@ -323,5 +298,96 @@
     \end{cases}
   \]
   Find $u(\frac{2}{3}, 2)$ and $u(\frac{1}{4}, \frac{7}{2})$.
+  \begin{solution}
+    Let $\phi_{\text{odd}}$ and $\psi_{\text{odd}}$ be the odd extensions of $x^{2}(1 - x)$
+    and $(1 - x)^2$, respectively, with a period of 1
+    We find that
+    \begin{align*}
+      u \left( \frac{2}{3}, 2 \right)
+      &= \frac{1}{2} \left[ \phi_{\text{odd}}\left( \frac{2}{3} + 2 \right)
+      + \phi_{\text{odd}}\left( \frac{2}{3} - 2 \right)\right]
+      + \int_{\frac{2}{3} - 2}^{\frac{2}{3} + 2} \psi_{\text{odd}}(s)\ ds\\
+      &= \frac{1}{2} \left[ \phi_{\text{odd}}\left( \frac{8}{3} \right)
+      + \phi_{\text{odd}}\left( -\frac{4}{3} \right)\right]
+      + \int_{-\frac{4}{3}}^{\frac{8}{3}} \psi_{\text{odd}}(s)\ ds\\
+      &= \frac{1}{2} \left[ -\phi_{\text{odd}}\left( \frac{4}{3} \right)
+      - \phi_{\text{odd}}\left( -\frac{2}{3} \right)\right]
+      + \int_{-\frac{4}{3}}^{\frac{8}{3}} \psi_{\text{odd}}(s)\ ds\\
+      &= \frac{1}{2} \left[ \phi_{\text{odd}}\left( \frac{2}{3} \right)
+      + \phi_{\text{odd}}\left( \frac{2}{3} \right)\right]
+      + \int_{-\frac{4}{3}}^{\frac{8}{3}} \psi_{\text{odd}}(s)\ ds\\
+      &= \frac{1}{2} \left[ \phi_{\text{odd}}\left( \frac{2}{3} \right)
+      + \phi_{\text{odd}}\left( \frac{2}{3} \right)\right]\\
+      &+ \left(
+        \int_{-\frac{4}{3}}^{-1} \psi_{\text{odd}} (s)\ ds
+        + \int_{-1}^{0} \psi_{\text{odd}} (s)\ ds
+        + \int_{0}^{1} \psi_{\text{odd}} (s)\ ds
+        + \int_{1}^{2} \psi_{\text{odd}} (s)\ ds
+        + \int_{2}^{\frac{8}{3}} \psi_{\text{odd}} (s)\ ds
+      \right)\\
+      &= \frac{1}{2} \left[ \phi_{\text{odd}}\left( \frac{2}{3} \right)
+      + \phi_{\text{odd}}\left( \frac{2}{3} \right)\right]\\
+      &+ \left(
+        \int_{\frac{2}{3}}^{1} \psi (s)\ ds
+        + \int_{0}^{1} -\psi (s)\ ds
+        + \int_{0}^{1} \psi (s)\ ds
+        + \int_{0}^{1} -\psi (s)\ ds
+        + \int_{0}^{\frac{1}{3}} \psi (s)\ ds
+      \right)\\
+      &= \frac{1}{2} \left[ \phi_{\text{odd}}\left( \frac{2}{3} \right)
+      + \phi_{\text{odd}}\left( \frac{2}{3} \right)\right] + \left(
+        \int_{0}^{\frac{2}{3}} \psi (s)\ ds + \int_{\frac{2}{3}}^{1} \psi (s)\ ds
+        + \int_{0}^{1} -\psi (s)\ ds \right)\\
+      &= \frac{1}{2} \left[ \phi_{\text{odd}}\left( \frac{2}{3} \right)
+      + \phi_{\text{odd}}\left( \frac{2}{3} \right)\right] + \left( \int_{0}^{1} \psi(s)\ ds
+      - \int_{0}^{1} \psi (s)\ ds \right)\\
+      &= \frac{1}{2} \left[ \phi \left( \frac{2}{3} \right)
+      + \phi \left( \frac{2}{3} \right) \right] + 0\\
+      &= \phi \left( \frac{2}{3} \right)\\
+      &= \left( \frac{2}{3} \right)^{2} \left( 1 - \frac{2}{3} \right)\\
+      &= \left( \frac{4}{9} \right) \left( \frac{1}{3} \right)\\
+      &= \frac{4}{27}
+    \end{align*}
+    \newpage
+    For $u(\frac{1}{4}, \frac{7}{2})$ we get that
+    \begin{align*}
+      u \left( \frac{1}{4}, \frac{7}{2} \right)
+      &= \frac{1}{2} \left[ \phi_{\text{odd}} \left( \frac{1}{4} + \frac{7}{2} \right)
+      + \phi_{\text{odd}} \left( \frac{1}{4} - \frac{7}{2} \right) \right]
+      + \frac{1}{2} \int_{\frac{1}{4} - \frac{7}{2}}^{\frac{1}{4} + \frac{7}{2}}
+      \psi_{\text{odd}}(s)\ ds\\
+      &= \frac{1}{2} \left[ \phi_{\text{odd}} \left( \frac{15}{4} \right)
+      + \phi_{\text{odd}} \left( -\frac{13}{4} \right) \right]
+      + \frac{1}{2} \int_{-\frac{13}{4}}^{\frac{15}{4}} \psi_{\text{odd}}(s)\ ds\\
+      &= \frac{1}{2} \left[ -\phi\left(\frac{1}{4}\right) + \phi\left(\frac{3}{4}\right) \right]
+      + \frac{1}{2} \left( 3 \int_{0}^{1} \psi(s)\ ds - 3 \int_{0}^{1} \psi(s)\ ds
+      + \int_{\frac{3}{4}}^{1} \psi(s)\ ds + \int_{\frac{1}{4}}^{1} -\psi(s)\ ds\right)\\
+      &= \frac{1}{2} \left[ -\phi \left( \frac{1}{4} \right) + \phi \left( \frac{3}{4} \right) \right]
+      + \frac{1}{2} \left( \int_{\frac{3}{4}}^{1} \psi(s)\ ds
+      + \int_{1}^{\frac{1}{4}} \psi(s)\ ds\right)\\
+      &= \frac{1}{2} \left[ -\phi \left( \frac{1}{4} \right)
+      + \phi \left( \frac{3}{4} \right) \right]
+      + \frac{1}{2} \left( \int_{\frac{3}{4}}^{\frac{1}{4}} \psi(s)\ ds\right)\\
+      &= \frac{1}{2} \left[ -\phi \left( \frac{1}{4} \right)
+      + \phi \left( \frac{3}{4} \right) \right]
+      - \frac{1}{2} \int_{\frac{1}{4}}^{\frac{3}{4}} \psi(s)\ ds\\
+      &= \frac{1}{2} \left[
+      \left( \left( \frac{1}{4} \right)^{2} \left( \frac{1}{4} - 1 \right) \right)
+      + \left( \left( \frac{3}{4} \right)^{2} \left( 1 - \frac{3}{4} \right) \right)
+      \right]
+      - \frac{1}{2} \int_{\frac{1}{4}}^{\frac{3}{4}} (1 - s)^2\ ds\\
+      &= \frac{1}{2} \left[
+      \left(-\frac{3}{64}\right) + \frac{9}{64}
+      \right]
+      - \frac{1}{2} \left(
+        -\frac{1}{3}\left( 1 - s \right)^{3}
+        \Bigg|_{\frac{1}{4}}^{\frac{3}{4}}
+      \right)\\
+      &= \frac{1}{2} \left( \frac{3}{32} \right)
+      + \frac{1}{6} \left( (1 - s)^{3} \Bigg|_{\frac{1}{4}}^{\frac{3}{4}} \right)\\
+      &= \frac{3}{64} + \left( -\frac{13}{192} \right)\\
+      &= -\frac{1}{48}
+    \end{align*}
+  \end{solution}
 \end{document}
 
